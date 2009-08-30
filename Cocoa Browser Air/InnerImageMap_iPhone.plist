@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Foundation</key>
+	<string>framework_foundation</string>
+	<key>UIKit</key>
+	<string>framework_appkit</string>
+	<key>Core Animation</key>
+	<string>framework_quartz</string>
+	<key>Core Graphics</key>
+	<string>framework_coreimage</string>
+	<key>Core Data</key>
+	<string>framework_coredata</string>
+	<key>Core Foundation</key>
+	<string>framework_foundation</string>
+	<key>Core Audio</key>
+	<string>framework_coreaudio</string>
+	<key>Audio Toolbox</key>
+	<string>framework_coreaudio</string>
+	<key>Audio Unit</key>
+	<string>framework_coreaudio</string>
+	<key>Audio Component</key>
+	<string>framework_coreaudio</string>
+	<key>Audio Converter</key>
+	<string>framework_coreaudio</string>
+	<key>Audio File</key>
+	<string>framework_coreaudio</string>
+	<key>Audio File Stream</key>
+	<string>framework_coreaudio</string>
+	<key>Audio Format</key>
+	<string>framework_coreaudio</string>
+	<key>Audio Queue</key>
+	<string>framework_coreaudio</string>
+	<key>Audio Session</key>
+	<string>framework_coreaudio</string>
+	<key>Audio Unit Component</key>
+	<string>framework_coreaudio</string>
+	<key>Audio Unit Processing Graph</key>
+	<string>framework_coreaudio</string>
+	<key>Extended Audio File</key>
+	<string>framework_coreaudio</string>
+	<key>Output Audio Unit</key>
+	<string>framework_coreaudio</string>
+	<key>System Audio</key>
+	<string>framework_coreaudio</string>
+	<key>CFNetwork</key>
+	<string>NSDotMac</string>
+</dict>
+</plist>

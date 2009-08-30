@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Foundation</key>
+	<string>framework_foundation</string>
+	<key>Application Kit</key>
+	<string>framework_appkit</string>
+	<key>Core Animation</key>
+	<string>framework_quartz</string>
+	<key>Core Data</key>
+	<string>framework_coredata</string>
+	<key>Core Graphics</key>
+	<string>framework_coreimage</string>
+	<key>Core Image</key>
+	<string>framework_coreimage</string>
+	<key>Image I/O</key>
+	<string>framework_coreimage</string>
+	<key>Image Kit</key>
+	<string>framework_coreimage</string>
+	<key>Quartz Core</key>
+	<string>framework_quartz</string>
+	<key>Core Foundation</key>
+	<string>framework_foundation</string>
+</dict>
+</plist>

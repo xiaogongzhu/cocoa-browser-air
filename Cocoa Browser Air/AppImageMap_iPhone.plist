@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Address Book</key>
+	<string>/Applications/Address Book.app</string>
+	<key>Address Book UI</key>
+	<string>/Applications/Address Book.app</string>
+	<key>Message UI</key>
+	<string>/Applications/Mail.app</string>
+	<key>Media Player</key>
+	<string>/Applications/QuickTime Player.app</string>
+	<key>AV Foundation</key>
+	<string>/Applications/QuickTime Player.app</string>
+	<key>System Sound</key>
+	<string>/Applications/QuickTime Player.app</string>
+	<key>Keychain</key>
+	<string>/Applications/Utilities/Keychain Access.app</string>
+	<key>Randomization</key>
+	<string>/Applications/Utilities/Keychain Access.app</string>
+	<key>Certificate, Key, and Trust</key>
+	<string>/Applications/Utilities/Keychain Access.app</string>
+	<key>System Configuration</key>
+	<string>/Applications/System Preferences.app</string>
+	<key>External Accessory</key>
+	<string>/Developer/Applications/Utilities/USB Prober.app</string>
+	<key>Security</key>
+	<string>/System/Library/PreferencePanes/Security.prefPane</string>
+</dict>
+</plist>

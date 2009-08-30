@@ -1,0 +1,349 @@
+BODY {
+    margin-top: 0;
+    margin-bottom: 3em;
+	color: #000;
+	font: 12px lucida grande, geneva, helvetica, arial, sans-serif;
+	}
+
+
+/* link classes */
+A:link			{ COLOR: #18396E; TEXT-DECORATION: none; }
+A:link:hover	{ COLOR: #18396E; TEXT-DECORATION: underline; }
+A:active		{ COLOR: #18396E; TEXT-DECORATION: none; }
+ 
+/* apple.com site does not explicitly define visited link properties, but we do here */ 
+A:visited		{ COLOR: #003366; TEXT-DECORATION: none; }
+A:visited:hover	{ COLOR: #003366; TEXT-DECORATION: underline; } 
+ 
+/* used to convert otherCodeCharacters to code, thus saving character space in HTML for smaller file sizes */
+tt {
+	FONT-SIZE: 11px; FONT-FAMILY: monaco, courier, monospace; }
+ 
+/* redefine preformated text and code blocks */
+PRE {
+	FONT-SIZE: 11px; FONT-FAMILY: monaco, courier, monospace; margin-top: 5px; margin-bottom: 10px;}
+CODE {
+	FONT-SIZE: 11px; FONT-FAMILY: monaco, courier, monospace; }
+
+
+h1	{
+	margin-top: 0.5em;
+	margin-bottom: 25px;
+	font: bold 26px lucida grande, geneva, helvetica, arial, sans-serif;
+	color: #000;
+	}
+h2	{
+	margin-top: 0.5em;
+	font-size: 24px;
+	color: #000;
+	padding-bottom: 2px; border-bottom: 1px solid black;
+	}
+h3	{
+	margin-top: 0.5em;
+	margin-bottom: .5em;
+	font-size: 19px;
+	color: #000;
+	}
+h3.tight {
+	margin-top: 0em;
+	margin-bottom: -.25em;
+	font-size: 19px;
+	color: #000;
+	}
+h3.tasks {
+	margin-top: 0px;
+	margin-bottom: .25em;
+	font-size: 19px;
+	color: #000;
+	}
+h3.verytight {
+	margin-top: 0em;
+	margin-bottom: -.25em;
+	font-size: 19px;
+	color: #000;
+	}
+h4	{
+	margin-top: 2em;
+	margin-bottom: .5em;
+	font-size: 15px;
+	color: #000;
+	}
+h5	{
+	margin-top: 20px;
+	margin-bottom: .5em;
+    padding: 0;
+	font-size: 13px;
+	color: #000;
+	}
+
+
+.code_head{
+	FONT-SIZE: 18px; FONT-FAMILY: monaco, courier, monospace; font-weight: bold; margin-top: 50px;
+}
+p {
+    margin-top: 0px; margin-bottom: 10px; font: 12px lucida grande, geneva, helvetica, arial, sans-serif;
+	}
+p.spaceabove {
+    margin-top: 13px; margin-bottom: 10px; font: 12px lucida grande, geneva, helvetica, arial, sans-serif;
+	}
+p.spaceabovemethod {
+    font: 11px monaco, courier, monospace; margin-top: 13px; margin-bottom: 10px;       
+}
+h3.tight + p, h3.verytight + p {
+    margin-top: 13px; margin-bottom: 10px; font: 12px lucida grande, geneva, helvetica, arial, sans-serif;
+	}
+h3.tight + p.spaceabovemethod {
+    font: 11px monaco, courier, monospace; margin-top: 13px; margin-bottom: 10px;       
+}
+.content_text{
+	margin-top: 0px; margin-bottom: 10px; font: 12px lucida grande, geneva, helvetica, arial, sans-serif;
+}
+p.blockquote{
+   padding-left: 50pt;
+   padding-right: 50pt;
+   }
+ul.availability {
+	list-style-type: none;
+	margin: 0 0 -10px 0;
+	}
+.availability li {
+	margin: 2px 0 0 -6px;
+	}
+ 
+/* frameset: content frame bold style for text*/
+b{
+	font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: 12px; font-weight: bold;
+}
+
+
+/* Spec Sheet Info Box */
+/* Used in AppKit Obj-C, Appkit Java, Foundation Obj-C, and Foundation Java References */ 
+        
+.spec_sheet_info_box  { margin-left: 1em }
+ 
+/* This builds a table */        
+.specbox {
+	border-top: 1px solid #919699;
+	border-left: 1px solid #919699;
+	border-right: 1px solid #919699;
+	margin-bottom: 10px;
+	}
+	
+.specbox td {
+	padding: 8px;
+	font-size: 12px;
+	text-align: left;
+	vertical-align: top;
+	border-bottom: 1px solid #919699;
+	}
+        
+/* This alternates colors in up to six table rows (light blue for odd, white for even)*/      
+        
+.specbox tr {
+        background: #F0F5F9;
+}
+ 
+.specbox tr + tr {
+        background: #FFFFFF;
+}
+ 
+.specbox tr + tr + tr {
+        background: #F0F5F9;
+}
+ 
+.specbox tr + tr + tr + tr {
+        background: #FFFFFF;
+}
+ 
+.specbox tr + tr + tr +tr + tr {
+        background: #F0F5F9;
+}
+ 
+.specbox tr + tr + tr + tr + tr + tr {
+        background: #FFFFFF;
+}
+ 
+/* informal protocol subtitling */
+ 
+.protocol_subtitle {
+	margin-top: -25px;
+	margin-bottom: 25px;
+	font-size: 13px;
+}
+
+
+
+/* table styles */
+caption.tablecaption {
+	margin-bottom: 5px;
+	text-align: left;
+}
+.sourcecodebox {
+	border: 1px solid #c7cfd5;
+	background: #f1f5f9;
+	margin: 20px 0;
+	}
+	
+div.tableholder {
+	margin-top:  20px;
+	margin-bottom: 20px; 
+	}
+	
+p.tableholder {
+	margin-bottom: 7px; 
+	font: 12px lucida grande, geneva, helvetica, arial, sans-serif;
+	} 
+	      
+.rowhead p {
+	font-weight:bold;
+	}
+	
+.rowhead {
+	background: #E2E2E2;
+	}
+ 
+.graybox {
+	border-top: 1px solid #919699;
+	border-left: 1px solid #919699;
+	}
+	
+.graybox th {
+	padding: 4px 8px 4px 8px;
+	background: #E2E2E2;
+	font-size: 12px;
+	border-bottom: 1px solid #919699;
+	border-right: 1px solid #919699;
+}
+
+.graybox th p {
+	font-weight: bold;
+	margin-bottom: 0px; 
+}
+	
+.graybox td {
+	padding: 8px;
+	font-size: 12px;
+	vertical-align: top;
+	border-bottom: 1px solid #919699;
+	border-right: 1px solid #919699;
+}
+
+.graybox td p { margin-bottom: 0px; }
+.graybox td p + p { margin-top: 5px; }
+.graybox td p + p + p { margin-top: 5px; }
+
+
+.headstart pre, code {
+	font: 11px 'Andale Mono', Monaco, Courier, monospace;
+	color: #666;
+}
+
+
+.legacybox {
+	border: 2px solid #695D54;
+	background: #FFFACD;
+	margin-top: 8px;
+	margin-right: 10px;
+	padding: 2px 5px 2px 8px;
+	text-align: left;
+}
+
+.legacybox p {
+	font: 12px lucida grande, geneva, helvetica, arial, sans-serif;
+	margin-top: 2px;
+}
+
+.legacybox h1 {
+	font: 14px lucida grande, geneva, helvetica, arial, sans-serif;
+	font-weight: bold;
+	text-align: center;
+	margin-top: 5px;
+	margin-bottom: 8px;
+}
+
+.noteboxdef {
+	border: 1px solid #a1a5a9;
+	background-color: #f7f7f7;
+	margin: 20px 0;
+	padding: 5px 8px 1px 9px;
+	text-align: left;
+}                              
+
+.notebox {
+	border: 1px solid #a1a5a9;
+	background-color: #f7f7f7;
+	margin: 20px 0;
+	padding: 0px 8px 1px 9px;
+	text-align: left;
+}
+
+.notebox p, .noteboxdef p { 
+	font: 12px lucida grande, geneva, helvetica, arial, sans-serif;
+	margin-top: 7px;
+	margin-bottom: 0px;
+}
+
+.importantboxdef {
+	border: 1px solid #111;
+	background-color: #e8e8e8;
+	margin: 20px 0;
+	padding: 5px 8px 1px 9px;
+	text-align: left;
+}
+
+.importantbox {
+	border: 1px solid #111;
+	background-color: #e8e8e8;
+	margin: 20px 0;
+	padding: 0px 8px 1px 9px;
+	text-align: left;
+}
+
+.importantbox p, .importantboxdef p {
+	font: 12px lucida grande, geneva, helvetica, arial, sans-serif;
+	margin-top: 7px;
+	margin-bottom: 0px;
+}
+
+.warningboxdef {
+	border: 1px solid #000;
+	background-color: #fff;
+	margin: 20px 0;
+	padding: 6px 8px 1px 9px;
+	text-align: left;
+}
+
+.warningbox {
+	border: 1px solid #000;
+	background-color: #fff;
+	margin: 20px 0;
+	padding: 0px 8px 1px 9px;
+	text-align: left;
+}
+
+.warningicon {
+	border-style: none;
+	background-color: transparent;
+	padding-top: 6px; 
+	padding-right: 12px;
+	padding-bottom: 7px;
+	float: left; 
+}
+
+.warningicondef {
+	border-style: none;
+	background-color: transparent;
+	padding-top: 0px; 
+	padding-right: 12px;
+	padding-bottom: 7px;
+	float: left; 
+}
+
+.warningbox p, .warningboxdef p {
+	border-style: none;
+	font: 12px lucida grande, geneva, helvetica, arial, sans-serif;
+	margin-top: 7px;
+	margin-bottom: 0px;
+	margin-left: 30px;
+}
+

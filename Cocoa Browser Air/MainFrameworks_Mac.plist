@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<string>Foundation</string>
+	<string>Application Kit</string>
+	<string>Core Animation</string>
+	<string>Core Data</string>
+	<string>Core Image</string>
+	<string>Image Kit</string>
+	<string>Quartz Core</string>
+	<string>QuickTime Kit</string>
+	<string>QTKit</string>
+	<string>WebKit Objective-C</string>
+	<string>Web Kit Objective-C</string>
+</array>
+</plist>
