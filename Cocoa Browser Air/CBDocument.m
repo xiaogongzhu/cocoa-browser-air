@@ -1641,6 +1641,9 @@ void _CBSetupToolbarView(NSToolbarItem *item, NSView *view)
         
         int selectedRow = [oFrameworkListView selectedRow];
         CBNode *targetNode = [oFrameworkListView itemAtRow:selectedRow];
+#ifdef __DEBUG__
+        NSLog(@"Target Node: %@", targetNode);
+#endif
 
         // Add History Item
         [self addHistoryItemForNode:targetNode];
@@ -1649,6 +1652,9 @@ void _CBSetupToolbarView(NSToolbarItem *item, NSView *view)
         if (targetNode.type == CBNodeTypeReferences || targetNode.type == CBNodeTypeDocument) {
             mCurrentReferencesNode = targetNode;
             if (!targetNode.isLoaded) {
+#ifdef __DEBUG__
+                NSLog(@"   -> startLoad");
+#endif
                 [targetNode startLoad];
             }
         }

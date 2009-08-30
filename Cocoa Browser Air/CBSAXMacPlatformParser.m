@@ -8,6 +8,7 @@
 
 #import "CBSAXMacPlatformParser.h"
 #import "CBNode+MacPlatformSort.h"
+#import "NSURL+RelativeAddress.h"
 
 
 static NSString *sCBMacOSXCoreGraphicsFrameworkURLStr = @"file:///Developer/Documentation/DocSets/com.apple.ADC_Reference_Library.CoreReference.docset/Contents/Resources/Documents/documentation/GraphicsImaging/Reference/CoreGraphicsReferenceCollection/index.html";
@@ -22,11 +23,11 @@ static NSString *sCBMacOSXCoreAnimationFrameworkURLStr = @"file:///Developer/Doc
 static NSString *sCBMacOSXCoreFoundationFrameworkURLStr = @"file:///Developer/Documentation/DocSets/com.apple.ADC_Reference_Library.CoreReference.docset/Contents/Resources/Documents/documentation/CoreFoundation/Reference/CoreFoundation_Collection/index.html";
 
 /*
-    Mac プラットフォームのパース手順：
-        1. 「Display the document list」というコメントが来た時点でフレームワークのリストが開始します。
-        2. 「〜 Framework Reference」というテキストがやってきます。
-        3. その直後に <a href="...">〜</a> のタグが来ると仮定して、ノードを作成します。
-        4. 何かコメントが来た時点でリストは終了します。
+    Parsing algorithm (Mac OS X Platform) (Version 2.0 beta)
+        1. Framework listing begins just after the comment "Display the document list" has come.
+        2. Frameworks are listed with a text "**** Framework Reference"
+        3. We assume that the tag '<a href="...">*****</a>' will come just after the text.
+        4. Any comment should indicate that the listing is finished.
  */
 @implementation CBSAXMacPlatformParser
 
@@ -54,7 +55,12 @@ static NSString *sCBMacOSXCoreFoundationFrameworkURLStr = @"file:///Developer/Do
     if (mLastFoundFrameworkNode && [tagName isEqualToString:@"a"]) {
         NSString *hrefStr = [attrs objectForKey:@"href"];
         if (hrefStr) {
-            mLastFoundFrameworkNode.URL = [[NSURL URLWithString:hrefStr relativeToURL:mParentNode.URL] standardizedURL];
+            //NSURL *theURL = [[NSURL URLWithString:hrefStr relativeToURL:mParentNode.URL] standardizedURL];
+            
+            // [numata:2009.08.31] -[NSURL URLWithString:relativeToURL:] seems working incorrectly. So we do it manually.
+            NSURL *theURL = [[NSURL numataURLWithString:hrefStr relativeToURL:mParentNode.URL] standardizedURL];
+
+            mLastFoundFrameworkNode.URL = theURL;
             [mParentNode addChildNode:mLastFoundFrameworkNode];
             mLastFoundFrameworkNode = nil;
         }
@@ -75,12 +81,19 @@ static NSString *sCBMacOSXCoreFoundationFrameworkURLStr = @"file:///Developer/Do
 
     NSString *frameworkName = [[text substringToIndex:frrefRange.location] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
-    // 「Quartz Core」フレームワークは他のフレームワークと重複するので省略する
+#ifdef __DEBUG__
+    NSLog(@"CBSAXMacPlatformParser>> Found framework: %@ (%@)", frameworkName, [parser className]);
+#endif
+    
+    // "Quartz Core" framework will be somehow redundant
     if ([frameworkName isEqualToString:@"Quartz Core"]) {
+#ifdef __DEBUG__
+        NSLog(@"    **** IGNORED ****");
+#endif
         return;
     }
     
-    // フレームワーク・ノードの作成
+    // Create a framework node
     CBNode *frameworkNode = [[CBNode new] autorelease];
     frameworkNode.title = frameworkName;
     frameworkNode.isLeaf = YES;
@@ -95,6 +108,10 @@ static NSString *sCBMacOSXCoreFoundationFrameworkURLStr = @"file:///Developer/Do
 
 - (void)_addFramework:(NSString *)frameworkName URLStr:(NSString *)URLStr
 {
+#ifdef __DEBUG__
+    NSLog(@"CBSAXMacPlatformParser>> _addFrame:\"%@\" URLStr:\"%@\"", frameworkName, URLStr);
+#endif
+    
     CBNode *aNode = [[CBNode new] autorelease];
     aNode.title = frameworkName;
     aNode.URL = [NSURL URLWithString:URLStr];
@@ -116,7 +133,7 @@ static NSString *sCBMacOSXCoreFoundationFrameworkURLStr = @"file:///Developer/Do
     [self _addFramework:@"Spotlight" URLStr:sCBMacOSXSpotlightFrameworkURLStr];
     [self _addFramework:@"Core Foundation" URLStr:sCBMacOSXCoreFoundationFrameworkURLStr];
     
-    // Objective-C 2.0 Reference の追加
+    // Add Objective-C 2.0 Reference manually
     NSString *parentPath = [mParentNode.URL path];
     while (YES) {
         if ([[parentPath lastPathComponent] isEqualToString:@"Documents"]) {

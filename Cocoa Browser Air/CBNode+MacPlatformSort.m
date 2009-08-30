@@ -38,7 +38,19 @@ BOOL _CBMoveNamedNodesIntoArray(NSMutableArray *dest, NSMutableArray *source, NS
         }
         if (!image) {
             NSString *imageAppPath = [appMap objectForKey:aNode.title];
-            if (imageAppPath) {
+            if (imageAppPath && [[NSFileManager defaultManager] fileExistsAtPath:imageAppPath]) {
+                NSWorkspace *workspace = [NSWorkspace sharedWorkspace];
+                image = [[workspace iconForFile:imageAppPath] copy];
+                if ([imageAppPath hasSuffix:@"Safari.app"] || [imageAppPath hasSuffix:@"QuickTime Plaer.app"]) {
+                    [image setSize:NSMakeSize(14, 14)];
+                } else {
+                    [image setSize:NSMakeSize(16, 16)];
+                }
+            }
+        }
+        if (!image) {
+            NSString *imageAppPath = [appMap objectForKey:[aNode.title stringByAppendingString:@" 2"]];
+            if (imageAppPath && [[NSFileManager defaultManager] fileExistsAtPath:imageAppPath]) {
                 NSWorkspace *workspace = [NSWorkspace sharedWorkspace];
                 image = [[workspace iconForFile:imageAppPath] copy];
                 if ([imageAppPath hasSuffix:@"Safari.app"] || [imageAppPath hasSuffix:@"QuickTime Plaer.app"]) {

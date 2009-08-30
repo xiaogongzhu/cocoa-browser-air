@@ -10,7 +10,7 @@
 #import "CBDocument.h"
 
 
-// Singletonパターンのサポート
+// Singleton Pattern
 static CBAppController *sInstance = nil;
 
 
@@ -42,6 +42,11 @@ static CBAppController *sInstance = nil;
     if (![self _checkPlatformExistanceWithURL:URL]) {
         return NO;
     }
+
+#ifdef __DEBUG__
+    NSLog(@"CBAppController>> _addPlatformWithName:\"%@\"\n    URL:\"%@\"\n    iconImagePath:\"%@\"", platformName, URL, iconImagePath);
+#endif
+
     NSMutableDictionary *infoDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                      platformName, @"Name",
                                      [NSNumber numberWithBool:YES], @"Enabled",

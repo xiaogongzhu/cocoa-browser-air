@@ -17,7 +17,7 @@
 @optional
 - (void)saxParserStarted:(CBSAXParser *)parser;
 
-// どんなエラーが起こった場合でも saxParserFinished: が最後に呼ばれます。
+// saxParserFinished: will be called even any kind of error occured
 - (void)saxParserFinished:(CBSAXParser *)parser;
 
 - (void)saxParserFacedWarning:(NSString *)warning;

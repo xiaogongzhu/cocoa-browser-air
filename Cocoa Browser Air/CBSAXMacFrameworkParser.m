@@ -8,6 +8,7 @@
 
 #import "CBSAXMacFrameworkParser.h"
 #import "CBNode.h"
+#import "NSURL+RelativeAddress.h"
 
 
 @implementation CBSAXMacFrameworkParser
@@ -23,19 +24,23 @@
 
 - (void)htmlParserStart:(MIHTMLParser *)parser
 {
+#ifdef __DEBUG__
+    NSLog(@"CBSAXMacFrameworkParser>> htmlParserStart: parent_node=%@", mParentNode);
+#endif
+    
     mStatus = CBSAXMacFrameworkParsingStatusNone;
 }
 
 - (void)htmlParser:(MIHTMLParser *)parser startTag:(NSString *)tagName attributes:(NSDictionary *)attrs
 {
-    // クラスのリファレンスは1回 Refresh で index.html から Reference.html に飛ばされる（Message フレームワークを除く）。
+    // Class reference will be redirected to Reference.html from index.html by "Refresh" (except for Message Framework)
     if (mIsBeforeBody) {
         if ([tagName isEqualToString:@"meta"] && [[attrs objectForKey:@"http-equiv"] isEqualToString:@"refresh"]) {
             NSString *content = [attrs objectForKey:@"content"];
             NSRange urlRange = [content rangeOfString:@"URL="];
             if (urlRange.location != NSNotFound) {
                 NSString *urlStr = [content substringFromIndex:urlRange.location + 4];
-                NSURL *theURL = [NSURL URLWithString:urlStr relativeToURL:mParentNode.URL];
+                NSURL *theURL = [NSURL numataURLWithString:urlStr relativeToURL:mParentNode.URL];
                 mInnerURL = theURL;
                 
                 mDoJump = YES;
@@ -67,7 +72,10 @@
             
             NSString *hrefStr = [attrs objectForKey:@"href"];
             if (hrefStr) {
-                mTargetURL = [[NSURL URLWithString:hrefStr relativeToURL:mParentNode.URL] standardizedURL];
+                mTargetURL = [[NSURL numataURLWithString:hrefStr relativeToURL:mParentNode.URL] standardizedURL];
+#ifdef __DEBUG__
+                NSLog(@"URL: href=%@, parent_url=%@, url=%@", hrefStr, mParentNode.URL, mTargetURL);
+#endif
             }
         }
     }
@@ -114,6 +122,9 @@
                 CBNode *aClassLevelNode = [[CBNode new] autorelease];
                 aClassLevelNode.title = mClassLevelName;
                 aClassLevelNode.URL = mTargetURL;
+#ifdef __DEBUG__
+                NSLog(@"New Class Node: name=%@, url=%@", mClassLevelName, mTargetURL);
+#endif
                 aClassLevelNode.type = CBNodeTypeClassLevel;
                 if ([mClassLevelName isEqualToString:@"Revision History"] || [mClassLevelName isEqualToString:@"RevisionHistory"]) {
                     aClassLevelNode.isLeaf = YES;

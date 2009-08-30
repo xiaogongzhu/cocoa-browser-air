@@ -26,5 +26,7 @@
 	<string>/Developer/Applications/Utilities/USB Prober.app</string>
 	<key>Security</key>
 	<string>/System/Library/PreferencePanes/Security.prefPane</string>
+	<key>Game Kit</key>
+	<string>/Applications/Chess.app</string>
 </dict>
 </plist>

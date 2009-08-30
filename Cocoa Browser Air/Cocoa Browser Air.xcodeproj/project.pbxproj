@@ -49,6 +49,7 @@
 		8EB4C2830F6391DE009E2E52 /* CBSAXIPhonePlatformParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB4C2820F6391DE009E2E52 /* CBSAXIPhonePlatformParser.m */; };
 		8EB4C48C0F63ABDD009E2E52 /* CBSAXMacFrameworkParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB4C48B0F63ABDD009E2E52 /* CBSAXMacFrameworkParser.m */; };
 		8EC54AFC0F7D1E4E00D8C6C0 /* CBSAXJavaScriptParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC54AFB0F7D1E4E00D8C6C0 /* CBSAXJavaScriptParser.m */; };
+		8ED23A6E104B12D5002B0348 /* NSURL+RelativeAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED23A6D104B12D5002B0348 /* NSURL+RelativeAddress.m */; };
 		8ED906390F63C3A00003F427 /* CBSAXMacClassParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED906380F63C3A00003F427 /* CBSAXMacClassParser.m */; };
 		8ED9067E0F63D26F0003F427 /* CBSAXParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED9067D0F63D26F0003F427 /* CBSAXParser.m */; };
 		8ED90B920F6411CA0003F427 /* CBSAXMacFrameworkParserForMessageFramework.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED90B910F6411CA0003F427 /* CBSAXMacFrameworkParserForMessageFramework.m */; };
@@ -160,6 +161,8 @@
 		8EB4C48B0F63ABDD009E2E52 /* CBSAXMacFrameworkParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBSAXMacFrameworkParser.m; sourceTree = "<group>"; };
 		8EC54AFA0F7D1E4E00D8C6C0 /* CBSAXJavaScriptParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBSAXJavaScriptParser.h; sourceTree = "<group>"; };
 		8EC54AFB0F7D1E4E00D8C6C0 /* CBSAXJavaScriptParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBSAXJavaScriptParser.m; sourceTree = "<group>"; };
+		8ED23A6C104B12D5002B0348 /* NSURL+RelativeAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+RelativeAddress.h"; sourceTree = "<group>"; };
+		8ED23A6D104B12D5002B0348 /* NSURL+RelativeAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+RelativeAddress.m"; sourceTree = "<group>"; };
 		8ED906370F63C3A00003F427 /* CBSAXMacClassParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBSAXMacClassParser.h; sourceTree = "<group>"; };
 		8ED906380F63C3A00003F427 /* CBSAXMacClassParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBSAXMacClassParser.m; sourceTree = "<group>"; };
 		8ED9067C0F63D26F0003F427 /* CBSAXParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBSAXParser.h; sourceTree = "<group>"; };
@@ -405,6 +408,8 @@
 			children = (
 				8E698F900DCE41B600ADFC92 /* NSString+Tokenizer.h */,
 				8E698F910DCE41B600ADFC92 /* NSString+Tokenizer.m */,
+				8ED23A6C104B12D5002B0348 /* NSURL+RelativeAddress.h */,
+				8ED23A6D104B12D5002B0348 /* NSURL+RelativeAddress.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -646,6 +651,7 @@
 				8EECE7490F7ED58A00A5725E /* MISplitView.m in Sources */,
 				8EECECE90F7F5CCC00A5725E /* CBFullSearchBarBackgroundView.m in Sources */,
 				8EECECED0F7F5CF000A5725E /* CBBackgroundView.m in Sources */,
+				8ED23A6E104B12D5002B0348 /* NSURL+RelativeAddress.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -744,6 +750,7 @@
 				ARCHS = "$(NATIVE_ARCH)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = __DEBUG__;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IBC_NOTICES = NO;

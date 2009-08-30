@@ -8,6 +8,7 @@
 
 #import "CBSAXMacRevisionParser.h"
 #import "CBNode.h"
+#import "NSURL+RelativeAddress.h"
 
 
 @implementation CBSAXMacRevisionParser
@@ -44,10 +45,10 @@
             [mHTMLSource appendString:key];
             [mHTMLSource appendString:@"=\""];
             if ([tagName isEqualToString:@"a"] && [key isEqualToString:@"href"]) {
-                NSURL *theURL = [NSURL URLWithString:value relativeToURL:mParentNode.URL];
+                NSURL *theURL = [NSURL numataURLWithString:value relativeToURL:mParentNode.URL];
                 [mHTMLSource appendString:[theURL absoluteString]];
             } else if ([tagName isEqualToString:@"img"] && [key isEqualToString:@"src"]) {
-                NSURL *theURL = [NSURL URLWithString:value relativeToURL:mParentNode.URL];
+                NSURL *theURL = [NSURL numataURLWithString:value relativeToURL:mParentNode.URL];
                 [mHTMLSource appendString:[theURL absoluteString]];
             } else {
                 [mHTMLSource appendString:value];

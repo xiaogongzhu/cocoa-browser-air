@@ -8,6 +8,7 @@
 
 #import "CBSAXMacClassParser.h"
 #import "CBNode.h"
+#import "NSURL+RelativeAddress.h"
 
 
 @implementation CBSAXMacClassParser
@@ -25,6 +26,9 @@
 
 - (void)htmlParserStart:(MIHTMLParser *)parser
 {
+#if __DEBUG__
+    NSLog(@"-[CBSAXMacClassParser htmlParserStart:]");
+#endif
     mStatus = CBSAXMacClassParsingStatusNone;
     mMethodLevelPrefix = nil;
     mIsAName = NO;
@@ -43,11 +47,11 @@
                 [mANameTags appendString:@"=\""];
                 if ([tagName isEqualToString:@"a"] && [key isEqualToString:@"href"]) {
                     NSURL *parentURL = (mInnerParser? mInnerURL: mParentNode.URL);
-                    NSURL *theURL = [NSURL URLWithString:value relativeToURL:parentURL];
+                    NSURL *theURL = [NSURL numataURLWithString:value relativeToURL:parentURL];
                     [mANameTags appendString:[theURL absoluteString]];
                 } else if ([tagName isEqualToString:@"img"] && [key isEqualToString:@"src"]) {
                     NSURL *parentURL = (mInnerParser? mInnerURL: mParentNode.URL);
-                    NSURL *theURL = [NSURL URLWithString:value relativeToURL:parentURL];
+                    NSURL *theURL = [NSURL numataURLWithString:value relativeToURL:parentURL];
                     [mANameTags appendString:[theURL absoluteString]];
                 } else {
                     [mANameTags appendString:value];
@@ -59,14 +63,14 @@
         }
     }
     
-    // クラスのリファレンスは1回 Refresh で index.html から Reference.html に飛ばされる（Message フレームワークを除く）。
+    // Class reference will be redirected to Reference.html from index.html by "Refresh" (except for Message Framework)
     if (mIsBeforeBody) {
         if ([tagName isEqualToString:@"meta"] && [[attrs objectForKey:@"http-equiv"] isEqualToString:@"refresh"]) {
             NSString *content = [attrs objectForKey:@"content"];
             NSRange urlRange = [content rangeOfString:@"URL="];
             if (urlRange.location != NSNotFound) {
                 NSString *urlStr = [content substringFromIndex:urlRange.location + 4];
-                NSURL *theURL = [NSURL URLWithString:urlStr relativeToURL:mParentNode.URL];
+                NSURL *theURL = [NSURL numataURLWithString:urlStr relativeToURL:mParentNode.URL];
                 mInnerURL = theURL;
 
                 mDoJump = YES;
@@ -86,7 +90,7 @@
         return;
     }
 
-    // パースのメイン部分
+    // Parse Main
     if (mStatus == CBSAXMacClassParsingStatusNone) {
         if ([tagName isEqualToString:@"h1"]) {
             mTempStr = [[NSMutableString alloc] init];
@@ -135,11 +139,11 @@
                     [mTempStr appendString:@"=\""];
                     if ([tagName isEqualToString:@"a"] && [key isEqualToString:@"href"]) {
                         NSURL *parentURL = (mInnerParser? mInnerURL: mParentNode.URL);
-                        NSURL *theURL = [NSURL URLWithString:value relativeToURL:parentURL];
+                        NSURL *theURL = [NSURL numataURLWithString:value relativeToURL:parentURL];
                         [mTempStr appendString:[theURL absoluteString]];
                     } else if ([tagName isEqualToString:@"img"] && [key isEqualToString:@"src"]) {
                         NSURL *parentURL = (mInnerParser? mInnerURL: mParentNode.URL);
-                        NSURL *theURL = [NSURL URLWithString:value relativeToURL:parentURL];
+                        NSURL *theURL = [NSURL numataURLWithString:value relativeToURL:parentURL];
                         [mTempStr appendString:[theURL absoluteString]];
                     } else {
                         [mTempStr appendString:value];
@@ -186,7 +190,7 @@
                 } else if ([mTempStr2 isEqualToString:@"Instance Methods"] || [mTempStr2 isEqualToString:@"Delegate Methods"]) {
                     mMethodLevelPrefix = @"- ";
                 } else if ([mTempStr2 isEqualToString:@"Methods"]) {
-                    // こうなるのはMessage フレームワークのみで、クラスメソッドしかない。
+                    // This should be a class method in Message framework.
                     aCategoryNode.title = @"Class Methods";
                     mMethodLevelPrefix = @"+ ";
                 } else {
@@ -280,11 +284,11 @@
                     [mTempStr appendString:@"=\""];
                     if ([tagName isEqualToString:@"a"] && [key isEqualToString:@"href"]) {
                         NSURL *parentURL = (mInnerParser? mInnerURL: mParentNode.URL);
-                        NSURL *theURL = [NSURL URLWithString:value relativeToURL:parentURL];
+                        NSURL *theURL = [NSURL numataURLWithString:value relativeToURL:parentURL];
                         [mTempStr appendString:[theURL absoluteString]];
                     } else if ([tagName isEqualToString:@"img"] && [key isEqualToString:@"src"]) {
                         NSURL *parentURL = (mInnerParser? mInnerURL: mParentNode.URL);
-                        NSURL *theURL = [NSURL URLWithString:value relativeToURL:parentURL];
+                        NSURL *theURL = [NSURL numataURLWithString:value relativeToURL:parentURL];
                         [mTempStr appendString:[theURL absoluteString]];
                     } else {
                         [mTempStr appendString:value];

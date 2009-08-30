@@ -66,6 +66,9 @@
 {
     Class parserClass = NULL;
     
+#ifdef __DEBUG__
+    NSLog(@"parserClassForClassLevelNode: %@", aNode);
+#endif
     if ([aNode.title isEqualToString:@"RevisionHistory"] || [aNode.title isEqualToString:@"Revision History"] || [aNode.title isEqualToString:@"Result Codes"]) {
         parserClass = [CBSAXMacRevisionParser class];
     } else {
@@ -118,6 +121,9 @@
 
 + (CBSAXParser *)createParserForNode:(CBNode *)aNode
 {
+#ifdef __DEBUG__
+    NSLog(@"createParserForNode: %@", aNode);
+#endif
     Class parserClass = NULL;
     
     switch (aNode.type) {

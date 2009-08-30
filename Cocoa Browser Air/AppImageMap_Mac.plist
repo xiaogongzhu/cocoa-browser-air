@@ -36,14 +36,20 @@
 	<string>/System/Library/CoreServices/Problem Reporter.app</string>
 	<key>Spotlight</key>
 	<string>/System/Library/CoreServices/Spotlight.app</string>
+	<key>Spotlight 2</key>
+	<string>/System/Library/PreferencePanes/Spotlight.prefPane</string>
 	<key>Quick Look</key>
 	<string>/System/Library/CoreServices/Spotlight.app</string>
+	<key>Quick Look 2</key>
+	<string>/System/Library/PreferencePanes/Spotlight.prefPane</string>
 	<key>Sync Services</key>
 	<string>/System/Library/CoreServices/File Sync.app</string>
 	<key>Collaboration</key>
 	<string>/System/Library/PreferencePanes/Accounts.prefPane</string>
 	<key>Screen Saver</key>
 	<string>/System/Library/PreferencePanes/ScreenSaver.prefPane</string>
+	<key>Screen Saver 2</key>
+	<string>/System/Library/PreferencePanes/DesktopScreenEffectsPref.prefPane</string>
 	<key>Security Foundation</key>
 	<string>/System/Library/PreferencePanes/Security.prefPane</string>
 	<key>Security Interface</key>
