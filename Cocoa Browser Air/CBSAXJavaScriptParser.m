@@ -66,7 +66,7 @@
     
     while (pos < length) {
         // シングルクォーテーション(')を探す
-        unsigned keyStartPos = NSNotFound;
+        NSUInteger keyStartPos = NSNotFound;
         while (pos < length) {
             unichar c = [scriptSource characterAtIndex:pos];
             pos++;
@@ -87,7 +87,7 @@
         }
         
         // シングルクォーテーション(')を探す
-        unsigned keyEndPos = NSNotFound;
+        NSUInteger keyEndPos = NSNotFound;
         while (pos < length) {
             unichar c = [scriptSource characterAtIndex:pos];
             pos++;
@@ -104,7 +104,7 @@
         }
         
         // シングルクォーテーション(')を探す
-        unsigned valueStartPos = NSNotFound;
+        NSUInteger valueStartPos = NSNotFound;
         while (pos < length) {
             unichar c = [scriptSource characterAtIndex:pos];
             pos++;
@@ -118,7 +118,7 @@
         }
         
         // シングルクォーテーション(')を探す
-        unsigned valueEndPos = NSNotFound;
+        NSUInteger valueEndPos = NSNotFound;
         while (pos < length) {
             unichar c = [scriptSource characterAtIndex:pos];
             pos++;

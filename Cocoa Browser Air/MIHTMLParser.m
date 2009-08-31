@@ -6,7 +6,7 @@
 //
 
 #import "MIHTMLParser.h"
-#import <libxml/HTMLParser.h>
+#import <libxml/HTMLparser.h>
 
 
 static void SAXStartDocument(void *ctx);

@@ -42,9 +42,7 @@
 		8E7CB2E40DD0BC4500BF1644 /* CBReferenceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E7CB2E30DD0BC4500BF1644 /* CBReferenceInfo.m */; };
 		8E8274960DD180A300295E13 /* CBWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8274950DD180A300295E13 /* CBWebView.m */; };
 		8EB4C1BC0F63894C009E2E52 /* CBSAXHTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB4C1BB0F63894C009E2E52 /* CBSAXHTMLParser.m */; };
-		8EB4C1C50F638A4B009E2E52 /* libxml.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EB4C1C40F638A4B009E2E52 /* libxml.framework */; };
 		8EB4C2030F638A84009E2E52 /* MIHTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB4C2020F638A84009E2E52 /* MIHTMLParser.m */; };
-		8EB4C20F0F638D34009E2E52 /* libxml.framework in フレームワークをコピー */ = {isa = PBXBuildFile; fileRef = 8EB4C1C40F638A4B009E2E52 /* libxml.framework */; };
 		8EB4C2800F6391BD009E2E52 /* CBSAXMacPlatformParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB4C27F0F6391BD009E2E52 /* CBSAXMacPlatformParser.m */; };
 		8EB4C2830F6391DE009E2E52 /* CBSAXIPhonePlatformParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB4C2820F6391DE009E2E52 /* CBSAXIPhonePlatformParser.m */; };
 		8EB4C48C0F63ABDD009E2E52 /* CBSAXMacFrameworkParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB4C48B0F63ABDD009E2E52 /* CBSAXMacFrameworkParser.m */; };
@@ -82,7 +80,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				8EB4C20F0F638D34009E2E52 /* libxml.framework in フレームワークをコピー */,
 			);
 			name = "フレームワークをコピー";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -150,7 +147,6 @@
 		8E8274950DD180A300295E13 /* CBWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBWebView.m; sourceTree = "<group>"; };
 		8EB4C1BA0F63894C009E2E52 /* CBSAXHTMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBSAXHTMLParser.h; sourceTree = "<group>"; };
 		8EB4C1BB0F63894C009E2E52 /* CBSAXHTMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBSAXHTMLParser.m; sourceTree = "<group>"; };
-		8EB4C1C40F638A4B009E2E52 /* libxml.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = libxml.framework; sourceTree = "<group>"; };
 		8EB4C2010F638A84009E2E52 /* MIHTMLParser.h */ = {isa = PBXFileReference; fileEncoding = 2147486209; lastKnownFileType = sourcecode.c.h; path = MIHTMLParser.h; sourceTree = "<group>"; };
 		8EB4C2020F638A84009E2E52 /* MIHTMLParser.m */ = {isa = PBXFileReference; fileEncoding = 2147486209; lastKnownFileType = sourcecode.c.objc; path = MIHTMLParser.m; sourceTree = "<group>"; };
 		8EB4C27E0F6391BD009E2E52 /* CBSAXMacPlatformParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBSAXMacPlatformParser.h; sourceTree = "<group>"; };
@@ -208,7 +204,6 @@
 			files = (
 				8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */,
 				8E698A830DCE140E00ADFC92 /* WebKit.framework in Frameworks */,
-				8EB4C1C50F638A4B009E2E52 /* libxml.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,7 +287,6 @@
 		2A37F4C3FDCFA73011CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				8EB4C1C40F638A4B009E2E52 /* libxml.framework */,
 				1058C7A6FEA54F5311CA2CBB /* Linked Frameworks */,
 				1058C7A8FEA54F5311CA2CBB /* Other Frameworks */,
 			);
@@ -753,9 +747,11 @@
 				GCC_PREPROCESSOR_DEFINITIONS = __DEBUG__;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2/;
 				IBC_NOTICES = NO;
 				IBC_WARNINGS = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-lxml2";
 				PREBINDING = NO;
 				SDKROOT = macosx10.5;
 			};
@@ -765,12 +761,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2/;
 				IBC_NOTICES = NO;
 				IBC_WARNINGS = NO;
+				OTHER_LDFLAGS = "-lxml2";
 				PREBINDING = NO;
 				SDKROOT = macosx10.5;
 			};
