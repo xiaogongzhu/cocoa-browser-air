@@ -10,10 +10,13 @@
 #import "CBNavigationInfo.h"
 
 
-static NSString *sCBMacOSXDocumentLocalHeader = @"file:///Developer/Documentation/DocSets/com.apple.ADC_Reference_Library.CoreReference.docset/Contents/Resources/Documents/documentation";
-static NSString *sCBMacOSXDocumentRemoteHeader = @"http://developer.apple.com/documentation";
+//static NSString *sCBMacOSXDocumentLocalHeader = @"file:///Developer/Documentation/DocSets/com.apple.ADC_Reference_Library.CoreReference.docset/Contents/Resources/Documents/documentation";
+//static NSString *sCBMacOSXDocumentRemoteHeader = @"http://developer.apple.com/documentation";
 
-static NSString *sCBMacOSXDocumentLocalHeaderForPlatformCheck = @"file:///Developer/Documentation/DocSets/com.apple.ADC_Reference_Library.CoreReference.docset/";
+//static NSString *sCBMacOSXDocumentLocalHeaderForPlatformCheck = @"file:///Developer/Documentation/DocSets/com.apple.ADC_Reference_Library.CoreReference.docset/";
+
+static NSMutableArray   *sCBMacOSXDocumentLocalHeaders = nil;
+static NSMutableArray   *sCBMacOSXDocumentLocalHeadersForPlatformCheck = nil;
 
 static NSMutableArray   *sCBIPhoneDocumentLocalHeaders = nil;
 static NSMutableArray   *sCBIPhoneDocumentLocalHeadersForPlatformCheck = nil;
@@ -28,6 +31,17 @@ static NSMutableArray   *sCBIPhoneDocumentLocalHeadersForPlatformCheck = nil;
     if (sCBIPhoneDocumentLocalHeaders) {
         return;
     }
+    
+    sCBMacOSXDocumentLocalHeaders = [[NSMutableArray alloc] init];
+    [sCBMacOSXDocumentLocalHeaders addObject:@"file:///Library/Developer/Shared/Documentation/DocSets/com.apple.adc.documentation.AppleSnowLeopard.CoreReference.docset/Contents/Resources/Documents/documentation"];
+    [sCBMacOSXDocumentLocalHeaders addObject:@"file:///Library/Developer/Shared/Documentation/DocSets/com.apple.ADC_Reference_Library.CoreReference.docset/Contents/Resources/Documents/documentation"];
+    [sCBMacOSXDocumentLocalHeaders addObject:@"file:///Developer/Documentation/DocSets/com.apple.ADC_Reference_Library.CoreReference.docset/Contents/Resources/Documents/documentation"];
+
+    sCBMacOSXDocumentLocalHeadersForPlatformCheck = [[NSMutableArray alloc] init];
+    [sCBMacOSXDocumentLocalHeadersForPlatformCheck addObject:@"file:///Library/Developer/Shared/Documentation/DocSets/com.apple.adc.documentation.AppleSnowLeopard.CoreReference.docset/"];
+    [sCBMacOSXDocumentLocalHeadersForPlatformCheck addObject:@"file:///Library/Developer/Shared/Documentation/DocSets/com.apple.ADC_Reference_Library.CoreReference.docset/"];
+    [sCBMacOSXDocumentLocalHeadersForPlatformCheck addObject:@"file:///Developer/Documentation/DocSets/com.apple.ADC_Reference_Library.CoreReference.docset/"];    
+
     sCBIPhoneDocumentLocalHeaders = [[NSMutableArray alloc] init];
     [sCBIPhoneDocumentLocalHeaders addObject:@"file:///Library/Developer/Shared/Documentation/DocSets/com.apple.adc.documentation.AppleiPhone2_0.iPhoneLibrary.docset/Contents/Resources/Documents/documentation"];
     [sCBIPhoneDocumentLocalHeaders addObject:@"file:///Library/Developer/Shared/Documentation/DocSets/com.apple.adc.documentation.AppleiPhone2_1.iPhoneLibrary.docset/Contents/Resources/Documents/documentation"];
@@ -40,7 +54,7 @@ static NSMutableArray   *sCBIPhoneDocumentLocalHeadersForPlatformCheck = nil;
     
     sCBIPhoneDocumentLocalHeadersForPlatformCheck = [[NSMutableArray alloc] init];
     [sCBIPhoneDocumentLocalHeadersForPlatformCheck addObject:@"file:///Library/Developer/Shared/Documentation/DocSets/com.apple.adc.documentation.AppleiPhone"];
-    [sCBIPhoneDocumentLocalHeadersForPlatformCheck addObject:@"file:///Developer/Platforms/iPhoneOS.platform"];
+    [sCBIPhoneDocumentLocalHeadersForPlatformCheck addObject:@"file:///Developer/Platforms/iPhoneOS.platform"];    
 }
 
 - (NSString *)checkClassName
@@ -107,32 +121,45 @@ static NSMutableArray   *sCBIPhoneDocumentLocalHeadersForPlatformCheck = nil;
 - (NSString *)checkPlatformName
 {
     NSString *absoluteStr = [self absoluteString];
-    if ([absoluteStr hasPrefix:sCBMacOSXDocumentLocalHeaderForPlatformCheck]) {
-        return @"Mac OS X";
-    } else {
-        for (NSString *aHeader in sCBIPhoneDocumentLocalHeadersForPlatformCheck) {
-            if ([absoluteStr hasPrefix:aHeader]) {
-                return @"iPhone";
-            }
+
+    for (NSString *aHeader in sCBMacOSXDocumentLocalHeadersForPlatformCheck) {
+        if ([absoluteStr hasPrefix:aHeader]) {
+            return @"Mac OS X";
         }
     }
+    
+    for (NSString *aHeader in sCBIPhoneDocumentLocalHeadersForPlatformCheck) {
+        if ([absoluteStr hasPrefix:aHeader]) {
+            return @"iPhone";
+        }
+    }
+    
     return nil;
 }
 
 - (NSString *)checkFrameworkNameForMacOSX
 {
-    NSString *urlStr = [self absoluteString];
+    /*NSString *urlStr = [self absoluteString];
     
     if ([urlStr hasPrefix:sCBMacOSXDocumentLocalHeader]) {
         urlStr = [urlStr substringFromIndex:[sCBMacOSXDocumentLocalHeader length]];
-    } else if ([urlStr hasPrefix:sCBMacOSXDocumentRemoteHeader]) {
-        urlStr = [urlStr substringFromIndex:[sCBMacOSXDocumentRemoteHeader length]];
     } else {
         NSLog(@"[checkFrameworkNameForMacOSX] No header for URL: url={%@}", urlStr);
         return nil;
-    }
+    }*/
     
     NSString *ret = nil;
+    
+    NSString *urlStr = [self absoluteString];
+    BOOL foundHeader = NO;
+    for (NSString *aHeader in sCBMacOSXDocumentLocalHeaders) {
+        if ([urlStr hasPrefix:aHeader]) {
+            urlStr = [urlStr substringFromIndex:[aHeader length]];
+            foundHeader = YES;
+            break;
+        }
+    }
+    
     // Foundation stuffs
     if ([urlStr hasPrefix:@"/Cocoa/Reference/Foundation/"] ||
         [urlStr hasPrefix:@"/Cocoa/Reference/NSCondition_class/"] ||
@@ -440,13 +467,19 @@ static NSMutableArray   *sCBIPhoneDocumentLocalHeadersForPlatformCheck = nil;
     NSString *urlStr = [self absoluteString];
     BOOL foundHeader = NO;
     
-    if ([urlStr hasPrefix:sCBMacOSXDocumentLocalHeader]) {
+    /*if ([urlStr hasPrefix:sCBMacOSXDocumentLocalHeader]) {
         urlStr = [urlStr substringFromIndex:[sCBMacOSXDocumentLocalHeader length]];
         foundHeader = YES;
-    } else if ([urlStr hasPrefix:sCBMacOSXDocumentRemoteHeader]) {
-        urlStr = [urlStr substringFromIndex:[sCBMacOSXDocumentRemoteHeader length]];
-        foundHeader = YES;
-    } else {
+    }*/
+    for (NSString *aHeader in sCBMacOSXDocumentLocalHeaders) {
+        if ([urlStr hasPrefix:aHeader]) {
+            urlStr = [urlStr substringFromIndex:[aHeader length]];
+            foundHeader = YES;
+            break;
+        }
+    }    
+
+    if (!foundHeader) {
         for (NSString *aHeader in sCBIPhoneDocumentLocalHeaders) {
             if ([urlStr hasPrefix:aHeader]) {
                 urlStr = [urlStr substringFromIndex:[aHeader length]];
