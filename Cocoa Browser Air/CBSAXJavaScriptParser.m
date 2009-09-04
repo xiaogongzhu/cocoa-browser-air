@@ -9,11 +9,18 @@
 #import "CBSAXJavaScriptParser.h"
 #import "CBNode.h"
 #import "NSString+Tokenizer.h"
+#import "NSString+JsonParser.h"
+
+
+typedef enum {
+    CBSAXJavaScriptTypeJSON,
+    CBSAXJavaScriptTypeArray,
+} CBSAXJavaScriptType;
 
 
 @interface CBSAXJavaScriptParser()
 
-- (void)parseJavaScriptInfos:(NSDictionary *)infos;
+- (void)parseJavaScriptInfos:(id)infos;
 
 @end
 
@@ -26,6 +33,45 @@
     return YES;
 }
 
+- (NSURL *)targetURL
+{
+    return mParentNode.URL;
+}
+
+- (CBSAXJavaScriptType)checkJavaScriptTypeForSource:(NSString *)source
+{
+    unsigned pos = 0;
+    unsigned length = [source length];
+    while (pos < length) {
+        unichar c = [source characterAtIndex:pos];
+        
+        // Skip Line Endings or white spaces
+        if (c == '\r' || c == '\n' || isspace((int)c)) {
+            pos++;
+            continue;
+        }
+        
+        // Skip Comment Lines
+        if (c == '/') {
+            pos++;
+            if (pos < length) {
+                do {
+                    c = [source characterAtIndex:pos];
+                    pos++;
+                } while (pos < length && (c != '\r' && c != '\n'));
+            }
+            continue;
+        }
+
+        if (c == '[' || c == '{') {
+            return CBSAXJavaScriptTypeJSON;
+        } else {
+            return CBSAXJavaScriptTypeArray;
+        }
+    }
+    return CBSAXJavaScriptTypeArray;
+}
+
 - (void)parseProc:(id)dummy
 {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
@@ -34,12 +80,14 @@
         [mDelegate performSelectorOnMainThread:@selector(saxParserStarted:) withObject:self waitUntilDone:NO];
     }
     
-    NSData *theData = [[NSData alloc] initWithContentsOfURL:mParentNode.URL];
+    NSData *theData = [[NSData alloc] initWithContentsOfURL:[self targetURL]];
     NSString *sourceStr = [[NSString alloc] initWithData:theData encoding:NSUTF8StringEncoding];
     
-    NSDictionary *infos = nil;
-    if ([sourceStr hasPrefix:@"["]) {
-        infos = [CBSAXJavaScriptParser parseJavaScriptJSON:sourceStr];
+    CBSAXJavaScriptType scriptType = [self checkJavaScriptTypeForSource:sourceStr];
+    
+    id infos = nil;
+    if (scriptType == CBSAXJavaScriptTypeJSON) {
+        infos = [sourceStr jsonObject];
     } else {
         infos = [CBSAXJavaScriptParser parseJavaScriptArray:sourceStr];
     }
@@ -53,99 +101,6 @@
     }
     
     [pool release];
-}
-
-+ (NSDictionary *)parseJavaScriptJSON:(NSString *)scriptSource
-{
-    NSMutableDictionary *infos = [NSMutableDictionary dictionary];
-
-    unsigned pos = 0;
-    unsigned length = [scriptSource length];
-    
-    NSMutableDictionary *currentInfo = [NSMutableDictionary dictionary];
-    
-    while (pos < length) {
-        // シングルクォーテーション(')を探す
-        NSUInteger keyStartPos = NSNotFound;
-        while (pos < length) {
-            unichar c = [scriptSource characterAtIndex:pos];
-            pos++;
-            if (c == '}') {
-                NSString *title = [currentInfo objectForKey:@"title"];
-                if (title) {
-                    [infos setObject:currentInfo forKey:title];
-                }
-                currentInfo = [NSMutableDictionary dictionary];
-            }
-            if (c == '\'') {
-                keyStartPos = pos;
-                break;
-            }
-        }
-        if (keyStartPos == NSNotFound) {
-            break;
-        }
-        
-        // シングルクォーテーション(')を探す
-        NSUInteger keyEndPos = NSNotFound;
-        while (pos < length) {
-            unichar c = [scriptSource characterAtIndex:pos];
-            pos++;
-            if (c == '\'') {
-                keyEndPos = pos;
-                break;
-            }
-            else if (c == '\\') {
-                pos++;
-            }
-        }
-        if (keyEndPos == NSNotFound) {
-            break;
-        }
-        
-        // シングルクォーテーション(')を探す
-        NSUInteger valueStartPos = NSNotFound;
-        while (pos < length) {
-            unichar c = [scriptSource characterAtIndex:pos];
-            pos++;
-            if (c == '\'') {
-                valueStartPos = pos;
-                break;
-            }
-        }
-        if (valueStartPos == NSNotFound) {
-            break;
-        }
-        
-        // シングルクォーテーション(')を探す
-        NSUInteger valueEndPos = NSNotFound;
-        while (pos < length) {
-            unichar c = [scriptSource characterAtIndex:pos];
-            pos++;
-            if (c == '\'') {
-                valueEndPos = pos;
-                break;
-            }
-            else if (c == '\\') {
-                pos++;
-            }
-        }
-        if (keyEndPos == NSNotFound) {
-            break;
-        }
-        
-        NSString *keyStr = [scriptSource substringWithRange:NSMakeRange(keyStartPos, keyEndPos - keyStartPos - 1)];
-        NSString *valueStr = [scriptSource substringWithRange:NSMakeRange(valueStartPos, valueEndPos - valueStartPos - 1)];
-        
-        [currentInfo setObject:valueStr forKey:keyStr];
-    }
-
-    NSString *title = [currentInfo objectForKey:@"title"];
-    if (title) {
-        [infos setObject:currentInfo forKey:title];
-    }
-    
-    return infos;
 }
 
 + (NSDictionary *)parseJavaScriptArray:(NSString *)scriptSource
@@ -206,7 +161,7 @@
     return infos;
 }
 
-- (void)parseJavaScriptInfos:(NSDictionary *)infos
+- (void)parseJavaScriptInfos:(id)infos
 {
     // Do nothing
 }

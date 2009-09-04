@@ -17,6 +17,8 @@
 		8E1932E10DCF4D69001E7074 /* CBStatusBarBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E1932E00DCF4D69001E7074 /* CBStatusBarBackgroundView.m */; };
 		8E1933190DCF52F1001E7074 /* CBOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E1933180DCF52F1001E7074 /* CBOutlineView.m */; };
 		8E4BB4F10DDFFE53000D72BC /* framework_coreaudio.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E4BB4F00DDFFE53000D72BC /* framework_coreaudio.png */; };
+		8E632BB410513FB8008F9172 /* SZJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E632BB110513FB8008F9172 /* SZJsonParser.m */; };
+		8E632BB510513FB8008F9172 /* NSString+JsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E632BB310513FB8008F9172 /* NSString+JsonParser.m */; };
 		8E63E7F40DCF1A5D00765448 /* CBOutlineViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E63E7F20DCF1A5D00765448 /* CBOutlineViewCell.m */; };
 		8E698A830DCE140E00ADFC92 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E698A820DCE140E00ADFC92 /* WebKit.framework */; };
 		8E698AA00DCE145B00ADFC92 /* CBDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E698A9E0DCE145B00ADFC92 /* CBDocument.xib */; };
@@ -34,6 +36,7 @@
 		8E698E030DCE326F00ADFC92 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E698E020DCE326F00ADFC92 /* MainMenu.xib */; };
 		8E698F8C0DCE418200ADFC92 /* NSURL+AppleRefAnalyze.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E698F8B0DCE418200ADFC92 /* NSURL+AppleRefAnalyze.m */; };
 		8E698F920DCE41B600ADFC92 /* NSString+Tokenizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E698F910DCE41B600ADFC92 /* NSString+Tokenizer.m */; };
+		8E7676A7105108F0009CCA7D /* CBSAXMac_10_6_PlatformParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E7676A6105108F0009CCA7D /* CBSAXMac_10_6_PlatformParser.m */; };
 		8E7A63CF0DCFAD4B0027DCD5 /* framework_coreimage.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E7A63CE0DCFAD4B0027DCD5 /* framework_coreimage.png */; };
 		8E7CAE210DD0560000BF1644 /* CBNode+MacPlatformSort.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E7CAE200DD0560000BF1644 /* CBNode+MacPlatformSort.m */; };
 		8E7CAE290DD0569300BF1644 /* CBNode+iPhonePlatformSort.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E7CAE280DD0569300BF1644 /* CBNode+iPhonePlatformSort.m */; };
@@ -107,6 +110,10 @@
 		8E1933170DCF52F1001E7074 /* CBOutlineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBOutlineView.h; sourceTree = "<group>"; };
 		8E1933180DCF52F1001E7074 /* CBOutlineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBOutlineView.m; sourceTree = "<group>"; };
 		8E4BB4F00DDFFE53000D72BC /* framework_coreaudio.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = framework_coreaudio.png; sourceTree = "<group>"; };
+		8E632BB010513FB8008F9172 /* SZJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SZJsonParser.h; sourceTree = "<group>"; };
+		8E632BB110513FB8008F9172 /* SZJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SZJsonParser.m; sourceTree = "<group>"; };
+		8E632BB210513FB8008F9172 /* NSString+JsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+JsonParser.h"; sourceTree = "<group>"; };
+		8E632BB310513FB8008F9172 /* NSString+JsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+JsonParser.m"; sourceTree = "<group>"; };
 		8E63E7F20DCF1A5D00765448 /* CBOutlineViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBOutlineViewCell.m; sourceTree = "<group>"; };
 		8E63E7F30DCF1A5D00765448 /* CBOutlineViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBOutlineViewCell.h; sourceTree = "<group>"; };
 		8E698A820DCE140E00ADFC92 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = /System/Library/Frameworks/WebKit.framework; sourceTree = "<absolute>"; };
@@ -132,6 +139,8 @@
 		8E698F900DCE41B600ADFC92 /* NSString+Tokenizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Tokenizer.h"; sourceTree = "<group>"; };
 		8E698F910DCE41B600ADFC92 /* NSString+Tokenizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Tokenizer.m"; sourceTree = "<group>"; };
 		8E6990330DCE46DF00ADFC92 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Japanese; path = Japanese.lproj/Credits.rtf; sourceTree = "<group>"; };
+		8E7676A5105108F0009CCA7D /* CBSAXMac_10_6_PlatformParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBSAXMac_10_6_PlatformParser.h; sourceTree = "<group>"; };
+		8E7676A6105108F0009CCA7D /* CBSAXMac_10_6_PlatformParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBSAXMac_10_6_PlatformParser.m; sourceTree = "<group>"; };
 		8E7A63CE0DCFAD4B0027DCD5 /* framework_coreimage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = framework_coreimage.png; sourceTree = "<group>"; };
 		8E7CAE1F0DD0560000BF1644 /* CBNode+MacPlatformSort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CBNode+MacPlatformSort.h"; sourceTree = "<group>"; };
 		8E7CAE200DD0560000BF1644 /* CBNode+MacPlatformSort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CBNode+MacPlatformSort.m"; sourceTree = "<group>"; };
@@ -408,6 +417,26 @@
 			name = Utilities;
 			sourceTree = "<group>";
 		};
+		8E7676A210510848009CCA7D /* Mac OS X 10.6 */ = {
+			isa = PBXGroup;
+			children = (
+				8E7676A5105108F0009CCA7D /* CBSAXMac_10_6_PlatformParser.h */,
+				8E7676A6105108F0009CCA7D /* CBSAXMac_10_6_PlatformParser.m */,
+			);
+			name = "Mac OS X 10.6";
+			sourceTree = "<group>";
+		};
+		8E76776C1051166C009CCA7D /* json_parser */ = {
+			isa = PBXGroup;
+			children = (
+				8E632BB010513FB8008F9172 /* SZJsonParser.h */,
+				8E632BB110513FB8008F9172 /* SZJsonParser.m */,
+				8E632BB210513FB8008F9172 /* NSString+JsonParser.h */,
+				8E632BB310513FB8008F9172 /* NSString+JsonParser.m */,
+			);
+			path = json_parser;
+			sourceTree = "<group>";
+		};
 		8EB4C1760F6383AC009E2E52 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -428,7 +457,9 @@
 				8EB4C1BB0F63894C009E2E52 /* CBSAXHTMLParser.m */,
 				8EC54AFA0F7D1E4E00D8C6C0 /* CBSAXJavaScriptParser.h */,
 				8EC54AFB0F7D1E4E00D8C6C0 /* CBSAXJavaScriptParser.m */,
+				8E76776C1051166C009CCA7D /* json_parser */,
 				8EB4C27C0F63917E009E2E52 /* Mac OS X 10.5 */,
+				8E7676A210510848009CCA7D /* Mac OS X 10.6 */,
 				8EB4C27D0F639188009E2E52 /* iPhone */,
 			);
 			name = "SAX Parser";
@@ -646,6 +677,9 @@
 				8EECECE90F7F5CCC00A5725E /* CBFullSearchBarBackgroundView.m in Sources */,
 				8EECECED0F7F5CF000A5725E /* CBBackgroundView.m in Sources */,
 				8ED23A6E104B12D5002B0348 /* NSURL+RelativeAddress.m in Sources */,
+				8E7676A7105108F0009CCA7D /* CBSAXMac_10_6_PlatformParser.m in Sources */,
+				8E632BB410513FB8008F9172 /* SZJsonParser.m in Sources */,
+				8E632BB510513FB8008F9172 /* NSString+JsonParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

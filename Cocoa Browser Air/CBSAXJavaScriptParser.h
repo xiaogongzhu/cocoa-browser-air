@@ -13,7 +13,6 @@
 }
 
 + (NSDictionary *)parseJavaScriptArray:(NSString *)scriptSource;
-+ (NSDictionary *)parseJavaScriptJSON:(NSString *)scriptSource;
 
 @end
 

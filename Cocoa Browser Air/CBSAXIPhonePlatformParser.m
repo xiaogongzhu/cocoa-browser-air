@@ -22,7 +22,7 @@
     [mParentNode addChildNode:aNode];
 }
 
-- (void)parseJavaScriptInfos:(NSDictionary *)infos
+- (void)parseJavaScriptInfos:(NSArray *)infos
 {
     //CBNode *frameworksNode = [[CBNode new] autorelease];
     //frameworksNode.title = @"Frameworks";
@@ -39,8 +39,7 @@
     
     CBNode *classListNode = [[CBNode new] autorelease];
     classListNode.title = @"Class References";
-    for (NSString *anIndexStr in infos) {
-        NSDictionary *anInfo = [infos objectForKey:anIndexStr];
+    for (NSDictionary *anInfo in infos) {
         NSString *title = [anInfo objectForKey:@"title"];
         if ([title hasSuffix:@" Framework Reference"]) {
             NSString *frameworkName = [anInfo objectForKey:@"framework"];

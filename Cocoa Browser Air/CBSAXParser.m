@@ -12,6 +12,7 @@
 #import "CBSAXMac_10_5_PlatformParser.h"
 #import "CBSAXMac_10_5_FrameworkParser.h"
 #import "CBSAXMac_10_5_ClassParser.h"
+#import "CBSAXMac_10_6_PlatformParser.h"
 #import "CBSAXMacRevisionParser.h"
 
 #import "CBSAXMacFrameworkParserForMessageFramework.h"
@@ -31,8 +32,8 @@
 
     if ([aNode.title isEqualToString:@"Mac OS X 10.5"]) {
         parserClass = [CBSAXMac_10_5_PlatformParser class];
-    //} else if ([aNode.title isEqualToString:@"Mac OS X 10.6"]) {
-    //    parserClass = [CBSAXMac_10_6_PlatformParser class];
+    } else if ([aNode.title isEqualToString:@"Mac OS X 10.6"]) {
+        parserClass = [CBSAXMac_10_6_PlatformParser class];
     } else if ([aNode.title hasPrefix:@"iPhone"]) {
         parserClass = [CBSAXIPhonePlatformParser class];
     }
