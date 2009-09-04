@@ -50,7 +50,7 @@
     Class parserClass = NULL;
 
     NSString *platformName = aNode.parentNode.parentNode.title;
-    if ([platformName isEqualToString:@"Mac OS X 10.5"]) {
+    if ([platformName hasPrefix:@"Mac OS X"]) {
         if ([aNode.title isEqualToString:@"Message"]) {
             parserClass = [CBSAXMacFrameworkParserForMessageFramework class];
         } else if ([aNode.title isEqualToString:@"Web Services Core"]) {

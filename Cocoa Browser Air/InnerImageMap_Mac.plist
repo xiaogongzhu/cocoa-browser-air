@@ -6,8 +6,16 @@
 	<string>framework_foundation</string>
 	<key>Application Kit</key>
 	<string>framework_appkit</string>
+	<key>Audio Toolbox</key>
+	<string>framework_coreaudio</string>
+	<key>Audio Unit</key>
+	<string>framework_coreaudio</string>
 	<key>Core Animation</key>
 	<string>framework_quartz</string>
+	<key>Core Audio</key>
+	<string>framework_coreaudio</string>
+	<key>Core Audio Kit</key>
+	<string>framework_coreaudio</string>
 	<key>Core Data</key>
 	<string>framework_coredata</string>
 	<key>Core Graphics</key>
@@ -18,6 +26,8 @@
 	<string>framework_coreimage</string>
 	<key>Image Kit</key>
 	<string>framework_coreimage</string>
+	<key>Quartz</key>
+	<string>framework_quartz</string>
 	<key>Quartz Core</key>
 	<string>framework_quartz</string>
 	<key>Core Foundation</key>

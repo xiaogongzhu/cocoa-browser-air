@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>Address Book C</key>
+	<string>/Applications/Address Book.app</string>
 	<key>Address Book Objective-C</key>
 	<string>/Applications/Address Book.app</string>
 	<key>Automator</key>
@@ -16,6 +18,8 @@
 	<string>/Applications/Mail.app</string>
 	<key>PDF Kit</key>
 	<string>/Applications/Preview.app</string>
+	<key>QuickTime</key>
+	<string>/Applications/QuickTime Player.app</string>
 	<key>QuickTime Kit</key>
 	<string>/Applications/QuickTime Player.app</string>
 	<key>QTKit</key>
@@ -46,10 +50,16 @@
 	<string>/System/Library/CoreServices/File Sync.app</string>
 	<key>Collaboration</key>
 	<string>/System/Library/PreferencePanes/Accounts.prefPane</string>
+	<key>Bluetooth</key>
+	<string>/System/Library/PreferencePanes/Bluetooth.prefPane</string>
+	<key>Bluetooth User Interface</key>
+	<string>/System/Library/PreferencePanes/Bluetooth.prefPane</string>
 	<key>Screen Saver</key>
 	<string>/System/Library/PreferencePanes/ScreenSaver.prefPane</string>
 	<key>Screen Saver 2</key>
 	<string>/System/Library/PreferencePanes/DesktopScreenEffectsPref.prefPane</string>
+	<key>Security</key>
+	<string>/System/Library/PreferencePanes/Security.prefPane</string>
 	<key>Security Foundation</key>
 	<string>/System/Library/PreferencePanes/Security.prefPane</string>
 	<key>Security Interface</key>
