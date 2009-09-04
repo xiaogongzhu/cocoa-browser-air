@@ -17,7 +17,7 @@ typedef enum {
 } CBSAXMacFrameworkParsingStatus;
 
 
-@interface CBSAXMacFrameworkParser : CBSAXHTMLParser {
+@interface CBSAXMac_10_5_FrameworkParser : CBSAXHTMLParser {
     CBSAXMacFrameworkParsingStatus   mStatus;
     CBSAXMacFrameworkParsingStatus   mLastRefStatus;
     

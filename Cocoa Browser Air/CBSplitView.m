@@ -3,7 +3,7 @@
 
 @implementation CBSplitView
 
-- (float)dividerThickness
+- (CGFloat)dividerThickness
 {
     return 1.0f;
 }

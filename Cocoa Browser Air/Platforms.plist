@@ -4,11 +4,23 @@
 <array>
 	<dict>
 		<key>Name</key>
-		<string>Mac OS X</string>
+		<string>Mac OS X 10.5</string>
 		<key>Icon File Path</key>
 		<string>/Developer/Platforms/MacOSX.platform/MacOSX.icns</string>
 		<key>URL</key>
+		<string>file:///Library/Developer/Shared/Documentation/DocSets/com.apple.ADC_Reference_Library.CoreReference.docset/Contents/Resources/Documents/referencelibrary/API_Fundamentals/Cocoa-api-date.html</string>
+		<key>Alt URL 1</key>
 		<string>file:///Developer/Documentation/DocSets/com.apple.ADC_Reference_Library.CoreReference.docset/Contents/Resources/Documents/referencelibrary/API_Fundamentals/Cocoa-api-date.html</string>
+	</dict>
+	<dict>
+		<key>Name</key>
+		<string>Mac OS X 10.6</string>
+		<key>Icon File Path</key>
+		<string>/Developer/Platforms/MacOSX.platform/MacOSX.icns</string>
+		<key>URL</key>
+		<string>file:///Library/Developer/Shared/Documentation/DocSets/com.apple.adc.documentation.AppleSnowLeopard.CoreReference.docset</string>
+		<key>Alt URL 1</key>
+		<string>file:///Developer/Documentation/DocSets/com.apple.adc.documentation.AppleSnowLeopard.CoreReference.docset</string>
 	</dict>
 	<dict>
 		<key>Name</key>

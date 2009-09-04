@@ -6,12 +6,12 @@
 //  Copyright 2009 Satoshi Numata. All rights reserved.
 //
 
-#import "CBSAXMacFrameworkParser.h"
+#import "CBSAXMac_10_5_FrameworkParser.h"
 #import "CBNode.h"
 #import "NSURL+RelativeAddress.h"
 
 
-@implementation CBSAXMacFrameworkParser
+@implementation CBSAXMac_10_5_FrameworkParser
 
 - (id)initWithParentNode:(CBNode *)parentNode
 {

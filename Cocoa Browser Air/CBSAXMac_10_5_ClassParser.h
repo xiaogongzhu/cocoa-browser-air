@@ -13,16 +13,16 @@
 
 
 typedef enum {
-    CBSAXMacClassParsingStatusNone,
-    CBSAXMacClassParsingStatusSpecInfo,
-    CBSAXMacClassParsingStatusCategory,
-    CBSAXMacClassParsingStatusMethodLevel,
-    CBSAXMacClassParsingStatusFinished
-} CBSAXMacClassParsingStatus;
+    CBSAXMac_10_5_ClassParsingStatusNone,
+    CBSAXMac_10_5_ClassParsingStatusSpecInfo,
+    CBSAXMac_10_5_ClassParsingStatusCategory,
+    CBSAXMac_10_5_ClassParsingStatusMethodLevel,
+    CBSAXMac_10_5_ClassParsingStatusFinished
+} CBSAXMac_10_5_ClassParsingStatus;
 
 
-@interface CBSAXMacClassParser : CBSAXHTMLParser {
-    CBSAXMacClassParsingStatus   mStatus;
+@interface CBSAXMac_10_5_ClassParser : CBSAXHTMLParser {
+    CBSAXMac_10_5_ClassParsingStatus   mStatus;
     
     MIHTMLParser    *mInnerParser;
     NSURL           *mInnerURL;

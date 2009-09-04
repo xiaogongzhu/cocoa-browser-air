@@ -12,8 +12,6 @@
 
 @implementation CBSAXHTMLParser
 
-@synthesize delegate = mDelegate;
-
 - (BOOL)parse
 {
     [NSThread detachNewThreadSelector:@selector(parseProc:) toTarget:self withObject:nil];

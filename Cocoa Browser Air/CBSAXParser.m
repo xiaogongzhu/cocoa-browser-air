@@ -9,9 +9,9 @@
 #import "CBSAXParser.h"
 #import "CBNode.h"
 
-#import "CBSAXMacPlatformParser.h"
-#import "CBSAXMacFrameworkParser.h"
-#import "CBSAXMacClassParser.h"
+#import "CBSAXMac_10_5_PlatformParser.h"
+#import "CBSAXMac_10_5_FrameworkParser.h"
+#import "CBSAXMac_10_5_ClassParser.h"
 #import "CBSAXMacRevisionParser.h"
 
 #import "CBSAXMacFrameworkParserForMessageFramework.h"
@@ -29,8 +29,10 @@
 {
     Class parserClass = NULL;
 
-    if ([aNode.title isEqualToString:@"Mac OS X"]) {
-        parserClass = [CBSAXMacPlatformParser class];
+    if ([aNode.title isEqualToString:@"Mac OS X 10.5"]) {
+        parserClass = [CBSAXMac_10_5_PlatformParser class];
+    //} else if ([aNode.title isEqualToString:@"Mac OS X 10.6"]) {
+    //    parserClass = [CBSAXMac_10_6_PlatformParser class];
     } else if ([aNode.title hasPrefix:@"iPhone"]) {
         parserClass = [CBSAXIPhonePlatformParser class];
     }
@@ -47,16 +49,16 @@
     Class parserClass = NULL;
 
     NSString *platformName = aNode.parentNode.parentNode.title;
-    if ([platformName isEqualToString:@"Mac OS X"]) {
+    if ([platformName isEqualToString:@"Mac OS X 10.5"]) {
         if ([aNode.title isEqualToString:@"Message"]) {
             parserClass = [CBSAXMacFrameworkParserForMessageFramework class];
         } else if ([aNode.title isEqualToString:@"Web Services Core"]) {
             parserClass = [CBSAXMacFrameworkParserForWSCFramework class];
         } else {
-            parserClass = [CBSAXMacFrameworkParser class];
+            parserClass = [CBSAXMac_10_5_FrameworkParser class];
         }
     } else if ([platformName hasPrefix:@"iPhone"]) {
-        parserClass = [CBSAXMacFrameworkParser class];
+        parserClass = [CBSAXMac_10_5_FrameworkParser class];
     }    
 
     return parserClass;
@@ -72,7 +74,7 @@
     if ([aNode.title isEqualToString:@"RevisionHistory"] || [aNode.title isEqualToString:@"Revision History"] || [aNode.title isEqualToString:@"Result Codes"]) {
         parserClass = [CBSAXMacRevisionParser class];
     } else {
-        parserClass = [CBSAXMacClassParser class];
+        parserClass = [CBSAXMac_10_5_ClassParser class];
     }
     
     return parserClass;

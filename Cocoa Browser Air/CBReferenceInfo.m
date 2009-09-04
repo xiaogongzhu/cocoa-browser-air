@@ -12,17 +12,51 @@
 
 @implementation CBReferenceInfo
 
+#pragma mark -
+#pragma mark Property Setup
+
 @synthesize type = mType;
 @synthesize platformName = mPlatformName;
 @synthesize frameworkName = mFrameworkName;
-@synthesize className = mClassName;
-@synthesize protocolName = mClassName;
-@synthesize methodName = mMethodName;
-@synthesize propertyName = mMethodName;
-@synthesize variableName = mMethodName;
-@synthesize functionName = mMethodName;
-@synthesize constantName = mMethodName;
-@synthesize dataTypeName = mMethodName;
+
+
+/**** We set up setters/getters manually, because multiple properties cannot share one instance variable since Xcode 3.2. ****/
+
+//@synthesize className = mClassName;
+- (NSString *)className { return mClassName; }
+- (void)setClassName:(NSString *)name { [mClassName release]; mClassName = [name retain]; }
+
+//@synthesize protocolName = mClassName;
+- (NSString *)protocolName { return mClassName; }
+- (void)setProtocolName:(NSString *)name { [mClassName release]; mClassName = [name retain]; }
+
+//@synthesize methodName = mMethodName;
+- (NSString *)methodName { return mMethodName; }
+- (void)setMethodName:(NSString *)name { [mMethodName release]; mMethodName = [name retain]; }
+
+//@synthesize propertyName = mMethodName;
+- (NSString *)propertyName { return mMethodName; }
+- (void)setPropertyName:(NSString *)name { [mMethodName release]; mMethodName = [name retain]; }
+
+//@synthesize variableName = mMethodName;
+- (NSString *)variableName { return mMethodName; }
+- (void)setVariableName:(NSString *)name { [mMethodName release]; mMethodName = [name retain]; }
+
+//@synthesize functionName = mMethodName;
+- (NSString *)functionName { return mMethodName; }
+- (void)setFunctionName:(NSString *)name { [mMethodName release]; mMethodName = [name retain]; }
+
+//@synthesize constantName = mMethodName;
+- (NSString *)constantName { return mMethodName; }
+- (void)setConstantName:(NSString *)name { [mMethodName release]; mMethodName = [name retain]; }
+
+//@synthesize dataTypeName = mMethodName;
+- (NSString *)dataTypeName { return mMethodName; }
+- (void)setDataTypeName:(NSString *)name { [mMethodName release]; mMethodName = [name retain]; }
+
+
+#pragma mark -
+#pragma mark Initialization / Cleaning Up
 
 - (id)init
 {
@@ -43,6 +77,9 @@
     [super dealloc];
 }
 
+
+#pragma mark -
+#pragma mark Other Implementations
 
 - (NSString *)description
 {

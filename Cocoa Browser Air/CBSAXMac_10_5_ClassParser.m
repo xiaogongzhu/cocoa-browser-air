@@ -6,12 +6,12 @@
 //  Copyright 2009 Satoshi Numata. All rights reserved.
 //
 
-#import "CBSAXMacClassParser.h"
+#import "CBSAXMac_10_5_ClassParser.h"
 #import "CBNode.h"
 #import "NSURL+RelativeAddress.h"
 
 
-@implementation CBSAXMacClassParser
+@implementation CBSAXMac_10_5_ClassParser
 
 - (id)initWithParentNode:(CBNode *)parentNode
 {
@@ -29,7 +29,7 @@
 #if __DEBUG__
     NSLog(@"-[CBSAXMacClassParser htmlParserStart:]");
 #endif
-    mStatus = CBSAXMacClassParsingStatusNone;
+    mStatus = CBSAXMac_10_5_ClassParsingStatusNone;
     mMethodLevelPrefix = nil;
     mIsAName = NO;
 }
@@ -91,7 +91,7 @@
     }
 
     // Parse Main
-    if (mStatus == CBSAXMacClassParsingStatusNone) {
+    if (mStatus == CBSAXMac_10_5_ClassParsingStatusNone) {
         if ([tagName isEqualToString:@"h1"]) {
             mTempStr = [[NSMutableString alloc] init];
             
@@ -101,19 +101,19 @@
             [mTempStr appendString:@"\" -->\n"];
             
             [mTempStr appendString:@"<h1>"];
-            mStatus = CBSAXMacClassParsingStatusSpecInfo;
+            mStatus = CBSAXMac_10_5_ClassParsingStatusSpecInfo;
         }
     }
-    else if (mStatus == CBSAXMacClassParsingStatusSpecInfo) {
+    else if (mStatus == CBSAXMac_10_5_ClassParsingStatusSpecInfo) {
         if ([tagName isEqualToString:@"h2"] || [tagName isEqualToString:@"h3"]) {
             if ([tagName isEqualToString:@"h2"]) {
                 mParentNode.contentHTMLSource = mTempStr;
                 [mTempStr release];
                 mTempStr = nil;
                 
-                mStatus = CBSAXMacClassParsingStatusCategory;
+                mStatus = CBSAXMac_10_5_ClassParsingStatusCategory;
             } else {
-                mStatus = CBSAXMacClassParsingStatusMethodLevel;
+                mStatus = CBSAXMac_10_5_ClassParsingStatusMethodLevel;
             }
             
             mTempStr = [[NSMutableString alloc] init];
@@ -154,9 +154,9 @@
             }
         }
     }
-    else if (mStatus == CBSAXMacClassParsingStatusCategory || mStatus == CBSAXMacClassParsingStatusMethodLevel) {
+    else if (mStatus == CBSAXMac_10_5_ClassParsingStatusCategory || mStatus == CBSAXMac_10_5_ClassParsingStatusMethodLevel) {
         if ([tagName isEqualToString:@"h2"] || [tagName isEqualToString:@"h3"] || ([tagName isEqualToString:@"div"] && [[attrs objectForKey:@"class"] isEqualToString:@"mini_nav_text"])) {
-            if (mStatus == CBSAXMacClassParsingStatusCategory) {
+            if (mStatus == CBSAXMac_10_5_ClassParsingStatusCategory) {
                 CBNode *aCategoryNode = [[CBNode new] autorelease];
                 aCategoryNode.title = mTempStr2;
                 aCategoryNode.isLoaded = YES;
@@ -259,12 +259,12 @@
             
             if ([tagName isEqualToString:@"h2"]) {
                 [mTempStr appendString:@"<h2>"];
-                mStatus = CBSAXMacClassParsingStatusCategory;
+                mStatus = CBSAXMac_10_5_ClassParsingStatusCategory;
             } else if ([tagName isEqualToString:@"h3"]) {
                 [mTempStr appendString:@"<h3>"];
-                mStatus = CBSAXMacClassParsingStatusMethodLevel;
+                mStatus = CBSAXMac_10_5_ClassParsingStatusMethodLevel;
             } else {
-                mStatus = CBSAXMacClassParsingStatusFinished;
+                mStatus = CBSAXMac_10_5_ClassParsingStatusFinished;
             }
         } else {
             if (!mIsAName) {
@@ -303,10 +303,10 @@
 
 - (void)htmlParser:(MIHTMLParser *)parser foundText:(NSString *)text
 {
-    if (mStatus == CBSAXMacClassParsingStatusSpecInfo) {
+    if (mStatus == CBSAXMac_10_5_ClassParsingStatusSpecInfo) {
         [mTempStr appendString:text];
     }
-    else if (mStatus == CBSAXMacClassParsingStatusCategory || mStatus == CBSAXMacClassParsingStatusMethodLevel) {
+    else if (mStatus == CBSAXMac_10_5_ClassParsingStatusCategory || mStatus == CBSAXMac_10_5_ClassParsingStatusMethodLevel) {
         [mTempStr appendString:text];
         if (mIsInHeader) {
             [mTempStr2 appendString:text];
@@ -316,12 +316,12 @@
 
 - (void)htmlParser:(MIHTMLParser *)parser endTag:(NSString *)tagName
 {
-    if (mStatus == CBSAXMacClassParsingStatusSpecInfo) {
+    if (mStatus == CBSAXMac_10_5_ClassParsingStatusSpecInfo) {
         if (![tagName isEqualToString:@"br"] && (![tagName isEqualToString:@"a"] || !mIsAName)) {
             [mTempStr appendFormat:@"</%@>", tagName];
         }
     }
-    else if (mStatus == CBSAXMacClassParsingStatusCategory || mStatus == CBSAXMacClassParsingStatusMethodLevel) {
+    else if (mStatus == CBSAXMac_10_5_ClassParsingStatusCategory || mStatus == CBSAXMac_10_5_ClassParsingStatusMethodLevel) {
         if (![tagName isEqualToString:@"br"] && (![tagName isEqualToString:@"a"] || !mIsAName)) {
             [mTempStr appendFormat:@"</%@>", tagName];
         }

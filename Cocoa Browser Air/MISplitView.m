@@ -34,7 +34,7 @@
     [super dealloc];
 }
 
-- (float)dividerThickness
+- (CGFloat)dividerThickness
 {
     if ([self isVertical]) {
         return 7.0f;

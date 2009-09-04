@@ -9,7 +9,7 @@
 #import "CBSAXHTMLParser.h"
 
 
-@interface CBSAXMacPlatformParser : CBSAXHTMLParser {
+@interface CBSAXMac_10_5_PlatformParser : CBSAXHTMLParser {
     CBNode      *mLastFoundFrameworkNode;
     
     BOOL        mIsInDocumentList;

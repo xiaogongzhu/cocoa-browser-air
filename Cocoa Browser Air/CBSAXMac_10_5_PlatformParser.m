@@ -6,7 +6,7 @@
 //  Copyright 2009 Satoshi Numata. All rights reserved.
 //
 
-#import "CBSAXMacPlatformParser.h"
+#import "CBSAXMac_10_5_PlatformParser.h"
 #import "CBNode+MacPlatformSort.h"
 #import "NSURL+RelativeAddress.h"
 
@@ -29,7 +29,7 @@ static NSString *sCBMacOSXCoreFoundationFrameworkURLStr = @"file:///Developer/Do
         3. We assume that the tag '<a href="...">*****</a>' will come just after the text.
         4. Any comment should indicate that the listing is finished.
  */
-@implementation CBSAXMacPlatformParser
+@implementation CBSAXMac_10_5_PlatformParser
 
 - (void)htmlParserStart:(MIHTMLParser *)parser
 {
