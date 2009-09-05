@@ -92,6 +92,10 @@ static NSString *sCBToolbarItemIdentifierLoading    = @"CBToolbarItemIdentifierL
     [oFrameworkListView setTarget:self];
     [oFrameworkListView setDoubleAction:@selector(frameworkListDoubleClicked:)];
     
+    NSMenu *contextMenu = [[[NSMenu alloc] initWithTitle:@"Context Menu"] autorelease];
+    [contextMenu addItemWithTitle:NSLocalizedString(@"Show in Finder", nil) action:@selector(showNodeInFinder:) keyEquivalent:@""];
+    [oFrameworkListView setMenu:contextMenu];
+    
     // Set up search field
     id searchFieldCell = [oFullSearchField cell];
     if ([searchFieldCell respondsToSelector:@selector(setPlaceholderString:)]) {
@@ -135,7 +139,7 @@ static NSString *sCBToolbarItemIdentifierLoading    = @"CBToolbarItemIdentifierL
     
     [oFullSearchResultView setRowHeight:15.0f];
     
-    // 検索フィールドの画像をセット
+    // Set Images to search fields
     [oSearchButton1 setImage:[NSImage imageNamed:NSImageNameRevealFreestandingTemplate]];
     [oSearchButton3 setImage:[NSImage imageNamed:NSImageNameRevealFreestandingTemplate]];
     
@@ -145,7 +149,7 @@ static NSString *sCBToolbarItemIdentifierLoading    = @"CBToolbarItemIdentifierL
         [oBrowserSplitView setFrame:frame];
     }
     
-    // 全文検索はまだサポートしない
+    // Full text search is not supported
     [oFullSearchField setEnabled:NO];
 
     // Window is not visible at this time (but it will be visible just after this method is completed).
@@ -299,6 +303,21 @@ static NSString *sCBToolbarItemIdentifierLoading    = @"CBToolbarItemIdentifierL
     }
 
     [self showFullSearchResultsView];
+}
+
+- (IBAction)showNodeInFinder:(NSMenuItem *)sender
+{
+    CBNode *targetNode = [sender representedObject];
+    
+    NSURL *theURL = targetNode.URL;
+    while (!theURL && targetNode) {
+        targetNode = targetNode.parentNode;
+        theURL = targetNode.URL;
+    }
+    
+    if (theURL) {
+        [[NSWorkspace sharedWorkspace] selectFile:[theURL path] inFileViewerRootedAtPath:nil];
+    }
 }
 
 

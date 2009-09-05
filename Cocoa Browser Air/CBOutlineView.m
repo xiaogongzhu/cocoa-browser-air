@@ -49,6 +49,25 @@
 }
  */
 
+- (NSMenu *)menuForEvent:(NSEvent *)event
+{
+    NSPoint pos = [self convertPoint:[event locationInWindow] fromView:nil];
+    NSInteger row = [self rowAtPoint:pos];
+    
+    if (row < 0) {
+        return nil;
+    }
+    
+    CBNode *targetNode = [self itemAtRow:row];
+    
+    NSMenu *menu = [super menuForEvent:event];
+    for (NSMenuItem *anItem in [menu itemArray]) {
+        [anItem setRepresentedObject:targetNode];
+    }
+    
+    return menu;
+}
+
 @end
 
 
