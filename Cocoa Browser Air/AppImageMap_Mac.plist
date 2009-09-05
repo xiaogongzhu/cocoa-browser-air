@@ -8,61 +8,65 @@
 	<string>/Applications/Address Book.app</string>
 	<key>Automator</key>
 	<string>/Applications/Automator.app</string>
-	<key>Scripting Bridge</key>
-	<string>/Applications/Automator.app</string>
+	<key>Bluetooth</key>
+	<string>/System/Library/PreferencePanes/Bluetooth.prefPane</string>
+	<key>Bluetooth User Interface</key>
+	<string>/System/Library/PreferencePanes/Bluetooth.prefPane</string>
 	<key>Calendar Store</key>
 	<string>/Applications/iCal.app</string>
+	<key>Collaboration</key>
+	<string>/System/Library/PreferencePanes/Accounts.prefPane</string>
+	<key>Core Text</key>
+	<string>/Applications/TextEdit.app</string>
+	<key>DVD Playback</key>
+	<string>/Applications/DVD Player.app</string>
+	<key>Exception Handling</key>
+	<string>/System/Library/CoreServices/Problem Reporter.app</string>
 	<key>Instant Message</key>
 	<string>/Applications/iChat.app</string>
 	<key>Message</key>
 	<string>/Applications/Mail.app</string>
 	<key>PDF Kit</key>
 	<string>/Applications/Preview.app</string>
+	<key>Preference Panes</key>
+	<string>/Applications/System Preferences.app</string>
+	<key>Quartz Composer</key>
+	<string>/Developer/Applications/Quartz Composer.app</string>
+	<key>Quick Look</key>
+	<string>/System/Library/CoreServices/Spotlight.app</string>
+	<key>Quick Look 2</key>
+	<string>/System/Library/PreferencePanes/Spotlight.prefPane</string>
 	<key>QuickTime</key>
 	<string>/Applications/QuickTime Player.app</string>
 	<key>QuickTime Kit</key>
 	<string>/Applications/QuickTime Player.app</string>
 	<key>QTKit</key>
 	<string>/Applications/QuickTime Player.app</string>
-	<key>WebKit Objective-C</key>
-	<string>/Applications/Safari.app</string>
-	<key>Web Kit Objective-C</key>
-	<string>/Applications/Safari.app</string>
-	<key>Web Services Core</key>
-	<string>/Applications/Safari.app</string>
-	<key>Core Text</key>
-	<string>/Applications/TextEdit.app</string>
-	<key>Preference Panes</key>
-	<string>/Applications/System Preferences.app</string>
-	<key>Quartz Composer</key>
-	<string>/Developer/Applications/Quartz Composer.app</string>
-	<key>Exception Handling</key>
-	<string>/System/Library/CoreServices/Problem Reporter.app</string>
-	<key>Spotlight</key>
-	<string>/System/Library/CoreServices/Spotlight.app</string>
-	<key>Spotlight 2</key>
-	<string>/System/Library/PreferencePanes/Spotlight.prefPane</string>
-	<key>Quick Look</key>
-	<string>/System/Library/CoreServices/Spotlight.app</string>
-	<key>Quick Look 2</key>
-	<string>/System/Library/PreferencePanes/Spotlight.prefPane</string>
-	<key>Sync Services</key>
-	<string>/System/Library/CoreServices/File Sync.app</string>
-	<key>Collaboration</key>
-	<string>/System/Library/PreferencePanes/Accounts.prefPane</string>
-	<key>Bluetooth</key>
-	<string>/System/Library/PreferencePanes/Bluetooth.prefPane</string>
-	<key>Bluetooth User Interface</key>
-	<string>/System/Library/PreferencePanes/Bluetooth.prefPane</string>
 	<key>Screen Saver</key>
 	<string>/System/Library/PreferencePanes/ScreenSaver.prefPane</string>
 	<key>Screen Saver 2</key>
 	<string>/System/Library/PreferencePanes/DesktopScreenEffectsPref.prefPane</string>
+	<key>Scripting Bridge</key>
+	<string>/Applications/Automator.app</string>
 	<key>Security</key>
 	<string>/System/Library/PreferencePanes/Security.prefPane</string>
 	<key>Security Foundation</key>
 	<string>/System/Library/PreferencePanes/Security.prefPane</string>
 	<key>Security Interface</key>
 	<string>/System/Library/PreferencePanes/Security.prefPane</string>
+	<key>Spotlight</key>
+	<string>/System/Library/CoreServices/Spotlight.app</string>
+	<key>Spotlight 2</key>
+	<string>/System/Library/PreferencePanes/Spotlight.prefPane</string>
+	<key>Sync Services</key>
+	<string>/System/Library/CoreServices/File Sync.app</string>
+	<key>System Configuration</key>
+	<string>/Applications/System Preferences.app</string>
+	<key>WebKit Objective-C</key>
+	<string>/Applications/Safari.app</string>
+	<key>Web Kit Objective-C</key>
+	<string>/Applications/Safari.app</string>
+	<key>Web Services Core</key>
+	<string>/Applications/Safari.app</string>
 </dict>
 </plist>

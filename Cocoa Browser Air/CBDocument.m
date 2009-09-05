@@ -147,7 +147,7 @@ static NSString *sCBToolbarItemIdentifierLoading    = @"CBToolbarItemIdentifierL
     
     // 全文検索はまだサポートしない
     [oFullSearchField setEnabled:NO];
-    
+
     // Window is not visible at this time (but it will be visible just after this method is completed).
     [NSTimer scheduledTimerWithTimeInterval:0
                                      target:self
@@ -1120,7 +1120,7 @@ static NSString *sCBToolbarItemIdentifierLoading    = @"CBToolbarItemIdentifierL
 
 - (void)validateSearchBarShowing
 {
-    // 自動的に検索バーを隠す
+    // Hide search bar automatically
     if ([[CBAppController sharedAppController] hidesSearchBarAutomatically]) {
         if (mIsSearchBarShown) {
             NSString *searchWord1 = [[oSearchField1 stringValue] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
@@ -1130,7 +1130,7 @@ static NSString *sCBToolbarItemIdentifierLoading    = @"CBToolbarItemIdentifierL
             }
         }
     }
-    // 隠さない
+    // Don't hide it
     else {
         if (!mIsSearchBarShown) {
             [self showSearchBar];

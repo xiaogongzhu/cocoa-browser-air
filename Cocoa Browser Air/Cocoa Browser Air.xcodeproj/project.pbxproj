@@ -12,6 +12,8 @@
 		8D15AC310486D014006FF6A4 /* CBDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4ACFDCFA73011CA2CEA /* CBDocument.m */; settings = {ATTRIBUTES = (); }; };
 		8D15AC320486D014006FF6A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
+		8E154FBF1051F01600EF0A2F /* libxml.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E154FBE1051F01600EF0A2F /* libxml.framework */; };
+		8E154FFD1051F07D00EF0A2F /* libxml.framework in フレームワークをコピー */ = {isa = PBXBuildFile; fileRef = 8E154FBE1051F01600EF0A2F /* libxml.framework */; };
 		8E19314D0DCF1BFE001E7074 /* cocoa_browser_icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8E19314C0DCF1BFE001E7074 /* cocoa_browser_icon.icns */; };
 		8E19328E0DCF40BE001E7074 /* CBSplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E19328A0DCF40BE001E7074 /* CBSplitView.m */; };
 		8E1932E10DCF4D69001E7074 /* CBStatusBarBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E1932E00DCF4D69001E7074 /* CBStatusBarBackgroundView.m */; };
@@ -83,6 +85,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				8E154FFD1051F07D00EF0A2F /* libxml.framework in フレームワークをコピー */,
 			);
 			name = "フレームワークをコピー";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -102,6 +105,7 @@
 		32DBCF750370BD2300C91783 /* Cocoa Browser Air_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Cocoa Browser Air_Prefix.pch"; sourceTree = "<group>"; };
 		8D15AC360486D014006FF6A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* Cocoa Browser Air.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cocoa Browser Air.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8E154FBE1051F01600EF0A2F /* libxml.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = libxml.framework; sourceTree = "<group>"; };
 		8E19314C0DCF1BFE001E7074 /* cocoa_browser_icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = cocoa_browser_icon.icns; sourceTree = "<group>"; };
 		8E19328A0DCF40BE001E7074 /* CBSplitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBSplitView.m; sourceTree = "<group>"; };
 		8E19328B0DCF40BE001E7074 /* CBSplitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBSplitView.h; sourceTree = "<group>"; };
@@ -213,6 +217,7 @@
 			files = (
 				8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */,
 				8E698A830DCE140E00ADFC92 /* WebKit.framework in Frameworks */,
+				8E154FBF1051F01600EF0A2F /* libxml.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,6 +301,7 @@
 		2A37F4C3FDCFA73011CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8E154FBE1051F01600EF0A2F /* libxml.framework */,
 				1058C7A6FEA54F5311CA2CBB /* Linked Frameworks */,
 				1058C7A8FEA54F5311CA2CBB /* Other Frameworks */,
 			);
@@ -795,14 +801,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = /usr/include/libxml2/;
 				IBC_NOTICES = NO;
 				IBC_WARNINGS = NO;
-				OTHER_LDFLAGS = "-lxml2";
 				PREBINDING = NO;
 				SDKROOT = macosx10.5;
 			};
