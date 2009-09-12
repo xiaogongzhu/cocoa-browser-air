@@ -8,6 +8,7 @@
 
 #import "CBSAXMac_10_6_PlatformParser.h"
 #import "CBNode+MacPlatformSort.h"
+#import "CBNode+iPhonePlatformSort.h"
 #import "NSString+JsonParser.h"
 
 
@@ -67,8 +68,12 @@
             }
         }
     }
-
-    [mParentNode sortMacFrameworkNamesAndSetImages];
+    
+    if ([mParentNode.title hasPrefix:@"iPhone"]) {
+        [mParentNode sortIPhoneFrameworkNamesAndSetImages:YES];
+    } else {
+        [mParentNode sortMacFrameworkNamesAndSetImages];
+    }
 
     mParentNode.isLoaded = YES;
 }

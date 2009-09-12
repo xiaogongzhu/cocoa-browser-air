@@ -62,5 +62,15 @@
 		<key>Alt URL 1</key>
 		<string>file:///Library/Developer/Shared/Documentation/DocSets/com.apple.adc.documentation.AppleiPhone3_0.iPhoneLibrary.docset/Contents/Resources/Documents/navigation/docdata.js</string>
 	</dict>
+	<dict>
+		<key>Name</key>
+		<string>iPhone 3.1</string>
+		<key>Icon File Path</key>
+		<string>/Developer/Platforms/iPhoneOS.platform/iPhoneOS.icns</string>
+		<key>URL</key>
+		<string>file:///Developer/Platforms/iPhoneOS.platform/Developer/Documentation/DocSets/com.apple.adc.documentation.AppleiPhone3_1.iPhoneLibrary.docset</string>
+		<key>Alt URL 1</key>
+		<string>file:///Library/Developer/Shared/Documentation/DocSets/com.apple.adc.documentation.AppleiPhone3_1.iPhoneLibrary.docset</string>
+	</dict>
 </array>
 </plist>
