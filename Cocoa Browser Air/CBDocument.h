@@ -13,7 +13,7 @@
 #import "CBStatusBarBackgroundView.h"
 
 
-@interface CBDocument : NSDocument
+@interface CBDocument : NSDocument<NSToolbarDelegate>
 {
     IBOutlet NSWindow               *oMainWindow;
     IBOutlet NSBrowser              *oBrowser;

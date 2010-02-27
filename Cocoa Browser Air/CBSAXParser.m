@@ -32,7 +32,7 @@
 
     if ([aNode.title isEqualToString:@"Mac OS X 10.5"]) {
         parserClass = [CBSAXMac_10_5_PlatformParser class];
-    } else if ([aNode.title isEqualToString:@"Mac OS X 10.6"] || [aNode.title isEqualToString:@"iPhone 3.1"]) {
+    } else if ([aNode.title isEqualToString:@"Mac OS X 10.6"] || [aNode.title isEqualToString:@"iPhone 3.1"] || [aNode.title isEqualToString:@"iPhone 3.2"]) {
         parserClass = [CBSAXMac_10_6_PlatformParser class];
     } else if ([aNode.title hasPrefix:@"iPhone"]) {
         parserClass = [CBSAXIPhonePlatformParser class];
