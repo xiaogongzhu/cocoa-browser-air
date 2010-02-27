@@ -42,6 +42,7 @@ static NSString *sCBToolbarItemIdentifierLoading    = @"CBToolbarItemIdentifierL
 - (void)showFullSearchResultsView;
 - (void)hideFullSearchResultsView;
 - (void)hideSearchBar;
+- (void)hideSearchBar:(NSTimeInterval)interval;
 - (void)showSearchBar;
 
 - (void)clearAllSearchWords;
@@ -151,18 +152,17 @@ static NSString *sCBToolbarItemIdentifierLoading    = @"CBToolbarItemIdentifierL
     
     // Full text search is not supported
     [oFullSearchField setEnabled:NO];
-
+    
+    if ([[CBAppController sharedAppController] hidesSearchBarAutomatically]) {
+        [self hideSearchBar:0.14];
+    }
+    
     // Window is not visible at this time (but it will be visible just after this method is completed).
     [NSTimer scheduledTimerWithTimeInterval:0
                                      target:self
                                    selector:@selector(setupWindowTitleProc:)
                                    userInfo:nil
                                     repeats:NO];
-}
-
-- (IBAction)searchField1CancelButtonPressed:(id)sender
-{
-    NSLog(@"OK");
 }
 
 - (void)setupWindowTitleProc:(NSTimer *)theTimer
@@ -234,6 +234,11 @@ static NSString *sCBToolbarItemIdentifierLoading    = @"CBToolbarItemIdentifierL
     [oSourceWindow makeKeyAndOrderFront:self];
 }
 
+- (void)doActivateSearchField1
+{
+    [oMainWindow makeFirstResponder:oSearchField1];
+}
+
 - (IBAction)activateSearchField1:(id)sender
 {
     [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(deactivateSearchField2:) userInfo:nil repeats:NO];
@@ -242,12 +247,13 @@ static NSString *sCBToolbarItemIdentifierLoading    = @"CBToolbarItemIdentifierL
     mLastSearchFieldActivatedTime1 = [NSDate timeIntervalSinceReferenceDate];
     [oSearchButton1 fadeOut:0.25];
     [oSearchField1 fadeIn:0.25];
-    [oMainWindow makeFirstResponder:oSearchField1];
+
+    [NSTimer scheduledTimerWithTimeInterval:0.26 target:self selector:@selector(doActivateSearchField1) userInfo:nil repeats:NO];
 }
 
 - (IBAction)deactivateSearchField1:(id)sender
 {
-    if ([oSearchField1 isHidden]) {
+    if ([oSearchField1 isHidden] || [[oSearchField1 stringValue] length] > 0) {
         return;
     }
     [oSearchField1 fadeOut:0.25];
@@ -274,6 +280,11 @@ static NSString *sCBToolbarItemIdentifierLoading    = @"CBToolbarItemIdentifierL
     [oSearchButton2 fadeIn:0.25];
 }
 
+- (void)doActivateSearchField3
+{
+    [oMainWindow makeFirstResponder:oSearchField3];
+}
+
 - (IBAction)activateSearchField3:(id)sender
 {
     [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(deactivateSearchField1:) userInfo:nil repeats:NO];
@@ -282,7 +293,8 @@ static NSString *sCBToolbarItemIdentifierLoading    = @"CBToolbarItemIdentifierL
     mLastSearchFieldActivatedTime3 = [NSDate timeIntervalSinceReferenceDate];
     [oSearchButton3 fadeOut:0.25];
     [oSearchField3 fadeIn:0.25];
-    [oMainWindow makeFirstResponder:oSearchField3];
+
+    [NSTimer scheduledTimerWithTimeInterval:0.26 target:self selector:@selector(doActivateSearchField3) userInfo:nil repeats:NO];
 }
 
 - (IBAction)deactivateSearchField3:(id)sender
@@ -900,6 +912,13 @@ static NSString *sCBToolbarItemIdentifierLoading    = @"CBToolbarItemIdentifierL
             mFilteredReferencesNode = nil;
         }
         [oBrowser reloadColumn:0];
+        if (mFilteredReferencesNode && [mFilteredReferencesNode childNodeCount] == 1) {
+            [oBrowser selectRow:0 inColumn:0];
+            CBNode *theNode = [self nodeForRow:0 column:0];
+            if (!theNode.isLoaded) {
+                [theNode startLoad];
+            }
+        }
     } else if (selectedNode.type == CBNodeTypeCategory) {
         NSString *searchWord = [oSearchField3 stringValue];
         mFilteringNode = selectedNode;
@@ -1061,6 +1080,11 @@ static NSString *sCBToolbarItemIdentifierLoading    = @"CBToolbarItemIdentifierL
 
 - (void)hideSearchBar
 {
+    [self hideSearchBar:0.2];
+}
+
+- (void)hideSearchBar:(NSTimeInterval)interval
+{
     if (!mIsSearchBarShown) {
         return;
     }
@@ -1091,7 +1115,7 @@ static NSString *sCBToolbarItemIdentifierLoading    = @"CBToolbarItemIdentifierL
     }
 
     NSViewAnimation *anim = [[NSViewAnimation alloc] initWithViewAnimations:animationInfos];
-    [anim setDuration:0.20];
+    [anim setDuration:interval];
     [anim setAnimationCurve:NSAnimationEaseIn];
     
     [anim startAnimation];
@@ -1258,6 +1282,29 @@ static NSString *sCBToolbarItemIdentifierLoading    = @"CBToolbarItemIdentifierL
     [anim release];
 }
 
+- (void)clearCurrentSearchWord
+{
+    if ([oBrowser selectedColumn] > 1) {
+        if (mFilteredCategoryNode) {
+            [oSearchField3 setStringValue:@""];
+            [mFilteredCategoryNode setFilteringStr:nil];
+            mFilteredCategoryNode = nil;
+            [oBrowser reloadColumn:2];
+        }
+    } else {
+        if (mFilteredReferencesNode) {
+            [oSearchField1 setStringValue:@""];
+            [mFilteredReferencesNode setFilteringStr:nil];
+            mFilteredReferencesNode = nil;
+            [oBrowser reloadColumn:0];
+        }
+    }
+    
+    if (!mFilteredReferencesNode && !mFilteredCategoryNode && [[CBAppController sharedAppController] hidesSearchBarAutomatically]) {
+        [self hideSearchBar];
+    }
+}
+
 
 //-------------------------------------------------------------------------
 #pragma mark ==== Accessor Methods for Nodes ====
@@ -1361,8 +1408,6 @@ static NSString *sCBToolbarItemIdentifierLoading    = @"CBToolbarItemIdentifierL
 
 - (void)setHTMLSource:(NSString *)htmlSource
 {
-    NSString *originalSource = htmlSource;
-    
     NSBundle *bundle = [NSBundle mainBundle];
     NSString *cssFilePath = [bundle pathForResource:@"stylesheet" ofType:@"css"];
     NSData *cssData = [NSData dataWithContentsOfFile:cssFilePath];
@@ -1456,6 +1501,15 @@ void _CBSetupToolbarView(NSToolbarItem *item, NSView *view)
     } else {
         [cell setFont:[NSFont fontWithName:@"LucidaGrande" size:12.0]];
     }    
+}
+
+- (void)browser:(NSBrowser *) browser didChangeLastColumn:(NSInteger)oldLastColumn toColumn:(NSInteger)column
+{
+    if (mFilteredCategoryNode) {
+        [oSearchField3 setStringValue:@""];
+        [mFilteredCategoryNode setFilteringStr:nil];
+        mFilteredCategoryNode = nil;
+    }
 }
 
 - (NSInteger)browser:(NSBrowser *)sender numberOfRowsInColumn:(NSInteger)column
@@ -1761,6 +1815,20 @@ void _CBSetupToolbarView(NSToolbarItem *item, NSView *view)
             [self hideFullSearchResultsView];
         }
     } else {
+        if (sourceObj == oSearchField1) {
+            if ([[oSearchField1 stringValue] length] == 0 && mFilteredReferencesNode) {
+                [mFilteredReferencesNode setFilteringStr:nil];
+                mFilteredReferencesNode = nil;
+                [oBrowser reloadColumn:0];
+                if (!mFilteredCategoryNode && [[CBAppController sharedAppController] hidesSearchBarAutomatically]) {
+                    [self hideSearchBar];
+                }
+                return;
+            } else if ([[oSearchField1 stringValue] length] > 0) {
+                [oBrowser selectRow:[oBrowser selectedRowInColumn:0] inColumn:0];
+            }
+        }
+        
         [self validateSearch];
     }
 }

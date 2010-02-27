@@ -32,9 +32,8 @@
     }
     // Esc key clears the search word
     else if (keyCode == 0x35) {
-        // TODO: 検索ワードの削除？
-        NSLog(@"TODO: 検索ワードの削除");
-        //[oDocument clearSearchWord];
+        // 検索ワードの削除？
+        [oDocument clearCurrentSearchWord];
         return;
     }
     // Just ignore Return/Enter key

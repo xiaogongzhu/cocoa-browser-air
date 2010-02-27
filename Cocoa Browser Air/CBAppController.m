@@ -24,6 +24,15 @@ static CBAppController *sInstance = nil;
 
 @implementation CBAppController
 
++ (void)initialize
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if (![defaults objectForKey:@"CBHidesSearchBarAutomatically"]) {
+        [defaults setBool:YES forKey:@"CBHidesSearchBarAutomatically"];
+        [defaults synchronize];
+    }
+}
+
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)theApplication { return YES; }
 
 + (CBAppController *)sharedAppController
@@ -146,7 +155,9 @@ static CBAppController *sInstance = nil;
     mRootNode.title = @"#root";
     mRootNode.type = CBNodeTypeRoot;
     
-    mHidesSearchBarAutomatically = NO;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+    mHidesSearchBarAutomatically = [defaults boolForKey:@"CBHidesSearchBarAutomatically"];
 }
 
 - (void)dealloc
@@ -239,6 +250,10 @@ static CBAppController *sInstance = nil;
         [oHideSearchBarMenuItem setState:NSOffState];
     }
 
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:mHidesSearchBarAutomatically forKey:@"CBHidesSearchBarAutomatically"];
+    [defaults synchronize];
+    
     NSDocumentController *docController = [NSDocumentController sharedDocumentController];
     for (CBDocument *aDocument in [docController documents]) {
         [aDocument validateSearchBarShowing];

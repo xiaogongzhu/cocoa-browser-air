@@ -13,7 +13,7 @@
 #import "CBStatusBarBackgroundView.h"
 
 
-@interface CBDocument : NSDocument<NSToolbarDelegate>
+@interface CBDocument : NSDocument
 {
     IBOutlet NSWindow               *oMainWindow;
     IBOutlet NSBrowser              *oBrowser;
@@ -136,6 +136,8 @@
 - (void)reloadFrameworkList;
 
 - (void)validateSearchBarShowing;
+
+- (void)clearCurrentSearchWord;
 
 @end
 
