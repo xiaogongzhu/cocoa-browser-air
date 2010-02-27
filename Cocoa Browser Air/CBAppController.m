@@ -158,6 +158,11 @@ static CBAppController *sInstance = nil;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
     mHidesSearchBarAutomatically = [defaults boolForKey:@"CBHidesSearchBarAutomatically"];
+    if (mHidesSearchBarAutomatically) {
+        [oHideSearchBarMenuItem setState:NSOnState];        
+    } else {
+        [oHideSearchBarMenuItem setState:NSOffState];
+    }
 }
 
 - (void)dealloc
