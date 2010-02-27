@@ -27,15 +27,21 @@
 - (void)htmlParserStart:(MIHTMLParser *)parser
 {
 #if __DEBUG__
-    NSLog(@"-[CBSAXMacClassParser htmlParserStart:]");
+    NSLog(@"-[CBSAXMac_10_5_ClassParser htmlParserStart:]");
 #endif
+
     mStatus = CBSAXMac_10_5_ClassParsingStatusNone;
     mMethodLevelPrefix = nil;
     mIsAName = NO;
+    mIsFinished = NO;
 }
 
 - (void)htmlParser:(MIHTMLParser *)parser startTag:(NSString *)tagName attributes:(NSDictionary *)attrs
 {
+    if (mIsFinished) {
+        return;
+    }
+    
     mIsAName = NO;
     if ([tagName isEqualToString:@"a"]) {
         if (![attrs objectForKey:@"href"]) {
@@ -72,9 +78,9 @@
                 NSString *urlStr = [content substringFromIndex:urlRange.location + 4];
                 NSURL *theURL = [NSURL numataURLWithString:urlStr relativeToURL:mParentNode.URL];
                 mInnerURL = theURL;
-
+                
                 mDoJump = YES;
-
+                
                 mInnerParser = [[MIHTMLParser alloc] init];
                 mInnerParser.delegate = self;
                 NSData *innerData = [[NSData alloc] initWithContentsOfURL:theURL];
@@ -87,10 +93,12 @@
         if (mIsBeforeBody && [tagName isEqualToString:@"body"]) {
             mIsBeforeBody = NO;
         }
-        return;
+        return;        
     }
+    
+    ///// Parse Main（<body>以降）
 
-    // Parse Main
+    // <h1>タグの開始部分を見つける。
     if (mStatus == CBSAXMac_10_5_ClassParsingStatusNone) {
         if ([tagName isEqualToString:@"h1"]) {
             mTempStr = [[NSMutableString alloc] init];
@@ -104,9 +112,12 @@
             mStatus = CBSAXMac_10_5_ClassParsingStatusSpecInfo;
         }
     }
+    
+    // 最初の<h2>タグの開始部分を見つける。
     else if (mStatus == CBSAXMac_10_5_ClassParsingStatusSpecInfo) {
         if ([tagName isEqualToString:@"h2"] || [tagName isEqualToString:@"h3"]) {
             if ([tagName isEqualToString:@"h2"]) {
+                [mTempStr appendString:@"</body></html>"];
                 mParentNode.contentHTMLSource = mTempStr;
                 [mTempStr release];
                 mTempStr = nil;
@@ -154,8 +165,10 @@
             }
         }
     }
+    
+    // それ以降の部分の処理
     else if (mStatus == CBSAXMac_10_5_ClassParsingStatusCategory || mStatus == CBSAXMac_10_5_ClassParsingStatusMethodLevel) {
-        if ([tagName isEqualToString:@"h2"] || [tagName isEqualToString:@"h3"] || ([tagName isEqualToString:@"div"] && [[attrs objectForKey:@"class"] isEqualToString:@"mini_nav_text"])) {
+        if ([tagName isEqualToString:@"h2"] || [tagName isEqualToString:@"h3"] || [tagName isEqualToString:@"hr"] || ([tagName isEqualToString:@"div"] && [[attrs objectForKey:@"class"] isEqualToString:@"mini_nav_text"])) {
             if (mStatus == CBSAXMac_10_5_ClassParsingStatusCategory) {
                 CBNode *aCategoryNode = [[CBNode new] autorelease];
                 aCategoryNode.title = mTempStr2;
@@ -175,8 +188,9 @@
                         }
                         loopCount--;
                     }
-                    aCategoryNode.contentHTMLSource = source;
+                    aCategoryNode.contentHTMLSource = [source stringByAppendingString:@"</body></html>"];
                 } else {
+                    [mTempStr appendString:@"</body></html>"];
                     aCategoryNode.contentHTMLSource = mTempStr;
                 }
                 if ([mTempStr2 isEqualToString:@"Overview"] || [mTempStr2 isEqualToString:@"Adopted Protocols"] || [mTempStr2 isEqualToString:@"Organization of This Document"] || [mTempStr2 isEqualToString:@"Result Codes"]) {
@@ -224,8 +238,9 @@
                         }
                         loopCount--;
                     }
-                    methodLevelNode.contentHTMLSource = source;
+                    methodLevelNode.contentHTMLSource = [source stringByAppendingString:@"</body></html>"];
                 } else {
+                    [mTempStr appendString:@"</body></html>"];
                     methodLevelNode.contentHTMLSource = mTempStr;
                 }
                 if (mLastCategoryNode) {
@@ -237,19 +252,19 @@
             
             [mTempStr release];
             mTempStr = nil;
-
+            
             [mTempStr2 release];
             mTempStr2 = nil;
             
             mTempStr = [[NSMutableString alloc] init];
             mTempStr2 = [[NSMutableString alloc] init];
             mIsInHeader = YES;
-
+            
             NSURL *parentURL = (mInnerParser? mInnerURL: mParentNode.URL);
             [mTempStr appendString:@"<!-- source_url=\""];
             [mTempStr appendString:[parentURL absoluteString]];
             [mTempStr appendString:@"\" -->\n"];
-
+            
             if ([mANameTags length] > 0) {
                 [mTempStr appendString:mANameTags];
                 [mTempStr appendString:@"\n"];
@@ -303,9 +318,16 @@
 
 - (void)htmlParser:(MIHTMLParser *)parser foundText:(NSString *)text
 {
+    if (mIsFinished) {
+        return;
+    }
+    
+    // <h1>開始から、<h2>開始までの区間。
     if (mStatus == CBSAXMac_10_5_ClassParsingStatusSpecInfo) {
         [mTempStr appendString:text];
     }
+    
+    // その他の区間
     else if (mStatus == CBSAXMac_10_5_ClassParsingStatusCategory || mStatus == CBSAXMac_10_5_ClassParsingStatusMethodLevel) {
         [mTempStr appendString:text];
         if (mIsInHeader) {
@@ -316,6 +338,15 @@
 
 - (void)htmlParser:(MIHTMLParser *)parser endTag:(NSString *)tagName
 {
+    if (mIsFinished) {
+        return;
+    }
+    
+    if ([tagName isEqualToString:@"body"]) {
+        mIsFinished = YES;
+        return;
+    }
+
     if (mStatus == CBSAXMac_10_5_ClassParsingStatusSpecInfo) {
         if (![tagName isEqualToString:@"br"] && (![tagName isEqualToString:@"a"] || !mIsAName)) {
             [mTempStr appendFormat:@"</%@>", tagName];
@@ -329,7 +360,7 @@
             mIsInHeader = NO;
         }
     }
-}
+}    
 
 - (void)htmlParserEnd:(MIHTMLParser *)parser
 {
@@ -345,9 +376,10 @@
         [mANameTags release];
         mANameTags = nil;
     }
-
+    
     mParentNode.isLoaded = YES;    
 }
 
 @end
+
 

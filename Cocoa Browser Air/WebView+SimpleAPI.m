@@ -14,7 +14,6 @@
 - (void)loadURL:(NSURL *)URL
 {
     NSURLRequest *request = [NSURLRequest requestWithURL:URL];
-    NSLog(@"Request: %@", request);
     WebFrame *frame = [self mainFrame];
     [frame loadRequest:request];
 }

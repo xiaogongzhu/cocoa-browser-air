@@ -1367,14 +1367,14 @@ static NSString *sCBToolbarItemIdentifierLoading    = @"CBToolbarItemIdentifierL
     NSString *cssFilePath = [bundle pathForResource:@"stylesheet" ofType:@"css"];
     NSData *cssData = [NSData dataWithContentsOfFile:cssFilePath];
     NSString *cssStr = [[[NSString alloc] initWithData:cssData encoding:NSUTF8StringEncoding] autorelease];
-    cssStr = [NSString stringWithFormat:@"<style>\n%@\n</style>\n", cssStr];
+    cssStr = [NSString stringWithFormat:@"<html lang=\"en\"><head><style type=\"text/css\">\n<!--\n%@\n-->\n</style></head><body>\n", cssStr];
     
     htmlSource = [cssStr stringByAppendingString:htmlSource];
     
     [oWebView loadHTMLString:htmlSource];
     
     NSMutableAttributedString *sourceAttrStr = [oSourceView textStorage];
-    [sourceAttrStr setAttributedString:[[[NSAttributedString alloc] initWithString:originalSource] autorelease]];
+    [sourceAttrStr setAttributedString:[[[NSAttributedString alloc] initWithString:htmlSource] autorelease]];
 }
 
 

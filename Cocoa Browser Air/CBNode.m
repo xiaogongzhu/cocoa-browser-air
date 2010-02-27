@@ -370,6 +370,8 @@ BOOL _CBMoveNamedNodesIntoArray(NSMutableArray *dest, NSMutableArray *source, NS
         NSRange objcRange = [ret rangeOfString:@" Objective-C"];
         if (objcRange.location != NSNotFound) {
             ret = [ret substringWithRange:NSMakeRange(0, objcRange.location)];
+        } else if ([ret isEqualToString:@"Quartz"]) {
+            return @"IK/PDF/QC";
         }
         return ret;
     }

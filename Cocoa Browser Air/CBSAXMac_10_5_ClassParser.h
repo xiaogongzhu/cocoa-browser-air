@@ -41,6 +41,7 @@ typedef enum {
     BOOL    mIsBeforeBody;
     BOOL    mDoJump;
     BOOL    mIsInConstants;
+    BOOL    mIsFinished;
 }
 
 @end
