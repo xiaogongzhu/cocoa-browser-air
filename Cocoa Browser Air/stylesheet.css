@@ -347,3 +347,17 @@ p.tableholder {
 	margin-left: 30px;
 }
 
+
+#file_links {
+    display: none;
+    height: 0;
+}
+
+#pageNavigationLinks_top {
+    display: none;
+    height: 0;
+}
+
+#pageTitle {
+    margin-top: -20px;
+}

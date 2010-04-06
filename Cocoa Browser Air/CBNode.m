@@ -372,6 +372,8 @@ BOOL _CBMoveNamedNodesIntoArray(NSMutableArray *dest, NSMutableArray *source, NS
             ret = [ret substringWithRange:NSMakeRange(0, objcRange.location)];
         } else if ([ret isEqualToString:@"Quartz"]) {
             return @"IK/PDF/QC";
+        } else if ([ret isEqualToString:@"Quartz Core"]) {
+            return @"CAnime/CImage";
         }
         return ret;
     }

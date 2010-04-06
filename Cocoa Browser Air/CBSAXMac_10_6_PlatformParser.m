@@ -16,9 +16,15 @@
 
 - (NSURL *)targetURL
 {
-    NSString *theURLStr = [mParentNode.URL absoluteString];
-    theURLStr = [theURLStr stringByAppendingPathComponent:@"Contents/Resources/Documents/navigation/library.js"];
-    return [NSURL URLWithString:theURLStr];;
+    NSString *theURLStr = [[mParentNode.URL absoluteString] stringByAppendingPathComponent:@"Contents/Resources/Documents/navigation/library.js"];
+    NSURL *ret = [NSURL URLWithString:theURLStr];
+    
+    if (![[NSFileManager defaultManager] fileExistsAtPath:[ret path]]) {
+        theURLStr = [[mParentNode.URL absoluteString] stringByAppendingPathComponent:@"Contents/Resources/Documents/navigation/library.json"];
+        ret = [NSURL URLWithString:theURLStr];
+    }
+    
+    return ret;
 }
 
 - (void)addFrameworkReferenceWithTitle:(NSString *)title detailInfo:(NSDictionary *)info
@@ -59,7 +65,13 @@
             NSString *detailFileName = [NSString stringWithFormat:@"%@.js", [anInfo objectAtIndex:1]];
             NSString *detailFileURLStr = [detailDirURLStr stringByAppendingPathComponent:detailFileName];
             NSURL *detailFileURL = [NSURL URLWithString:detailFileURLStr];
-
+            
+            if (![[NSFileManager defaultManager] fileExistsAtPath:[detailFileURL path]]) {
+                NSString *detailFileName = [NSString stringWithFormat:@"%@.json", [anInfo objectAtIndex:1]];
+                NSString *detailFileURLStr = [detailDirURLStr stringByAppendingPathComponent:detailFileName];
+                detailFileURL = [NSURL URLWithString:detailFileURLStr];
+            }
+            
             NSError *error = nil;
             NSString *detailStr = [NSString stringWithContentsOfURL:detailFileURL encoding:NSUTF8StringEncoding error:&error];
             if (detailStr) {

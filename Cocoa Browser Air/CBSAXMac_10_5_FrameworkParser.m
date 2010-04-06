@@ -63,6 +63,8 @@
     if (mStatus == CBSAXMacFrameworkParsingStatusNone) {
         if ([tagName isEqualToString:@"h3"]) {
             mStatus = CBSAXMacFrameworkParsingStatusCollectionCheck;
+        } else if ([tagName isEqualToString:@"div"] && [[attrs objectForKey:@"class"] isEqualToString:@"collectionHead"]) {
+            mStatus = CBSAXMacFrameworkParsingStatusCollectionCheck;
         }
     }
     else if (mStatus == CBSAXMacFrameworkParsingStatusReferences) {
@@ -114,6 +116,9 @@
     else if (mStatus == CBSAXMacFrameworkParsingStatusReferences) {
         if ([tagName isEqualToString:@"table"]) {
             mStatus = CBSAXMacFrameworkParsingStatusCollectionCheck;
+        }
+        else if ([tagName isEqualToString:@"ol"]) {
+            mStatus = CBSAXMacFrameworkParsingStatusNone;
         }
     }
     else if (mStatus == CBSAXMacFrameworkParsingStatusClassLevelNameCheck) {
