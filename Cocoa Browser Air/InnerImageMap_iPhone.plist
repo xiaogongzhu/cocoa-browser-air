@@ -46,6 +46,8 @@
 	<string>framework_coreaudio</string>
 	<key>CFNetwork</key>
 	<string>NSDotMac</string>
+	<key>iAd</key>
+	<string>NSDotMac</string>
 	<key>Quartz</key>
 	<string>framework_quartz</string>
 	<key>Quartz Core</key>

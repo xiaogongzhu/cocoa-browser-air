@@ -7,9 +7,11 @@
 	<string>Core Animation</string>
 	<string>Quartz Core</string>
 	<string>Core Data</string>
+	<string>Core Graphics</string>
 	<string>Core Image</string>
 	<string>Image Kit</string>
 	<string>Quartz</string>
+	<string>Quick Look</string>
 	<string>QuickTime Kit</string>
 	<string>QTKit</string>
 	<string>WebKit Objective-C</string>

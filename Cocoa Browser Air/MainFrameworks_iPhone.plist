@@ -12,5 +12,8 @@
 	<string>Core Graphics</string>
 	<string>Game Kit</string>
 	<string>Media Player</string>
+	<string>OpenGL ES</string>
+	<string>Quick Look</string>
+	<string>iAd</string>
 </array>
 </plist>

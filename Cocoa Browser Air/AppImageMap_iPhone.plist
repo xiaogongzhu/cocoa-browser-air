@@ -28,5 +28,9 @@
 	<string>/System/Library/PreferencePanes/Security.prefPane</string>
 	<key>Game Kit</key>
 	<string>/Applications/Chess.app</string>
+	<key>OpenGL ES</key>
+	<string>/Applications/Chess.app</string>
+	<key>Quick Look</key>
+	<string>/System/Library/PreferencePanes/Spotlight.prefPane</string>
 </dict>
 </plist>
