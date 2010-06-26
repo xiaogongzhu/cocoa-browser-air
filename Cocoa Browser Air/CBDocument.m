@@ -144,9 +144,10 @@ static NSString *sCBToolbarItemIdentifierLoading    = @"CBToolbarItemIdentifierL
     [oSearchButton1 setImage:[NSImage imageNamed:NSImageNameRevealFreestandingTemplate]];
     [oSearchButton3 setImage:[NSImage imageNamed:NSImageNameRevealFreestandingTemplate]];
     
+    // Hide full search result
     {
         NSRect frame = [oBrowserSplitView frame];
-        frame.size.height += [oFullSearchResultViewBox frame].size.height - 2 + 5;
+        frame.size.height += [oFullSearchResultViewBox frame].size.height - 2 + 8;
         [oBrowserSplitView setFrame:frame];
     }
     
@@ -489,7 +490,7 @@ static NSString *sCBToolbarItemIdentifierLoading    = @"CBToolbarItemIdentifierL
     NSView *documentView = [[[oWebView mainFrame] frameView] documentView];
     
     NSPrintOperation *printOperation = [NSPrintOperation printOperationWithView:documentView printInfo:printInfo];
-    [printOperation setShowPanels:flag];
+    [printOperation setShowsPrintPanel:flag];
     [printOperation setCanSpawnSeparateThread:NO];    
     
     [printOperation runOperationModalForWindow:oMainWindow
@@ -513,19 +514,32 @@ static NSString *sCBToolbarItemIdentifierLoading    = @"CBToolbarItemIdentifierL
     CBNode *theNode = [oFrameworkListView itemAtRow:selectedRow];
     
     NSDocumentController *docController = [NSDocumentController sharedDocumentController];
-    CBDocument *newDoc = [docController openUntitledDocumentOfType:@"DocumentType" display:YES];
-    [newDoc showNodeForDoubleClickOpen:theNode];
+
+    NSError* error = nil;
+    CBDocument* newDoc = [docController openUntitledDocumentAndDisplay:YES error:&error];
+    if (newDoc) {
+        [newDoc showNodeForDoubleClickOpen:theNode];
+    } else {
+        NSLog(@"Error (frameworkListDoubleClicked:) => %@", error);
+    }
 }
 
 - (void)browserDoubleClicked:(id)sender
 {
-    CBNode *theNode = [self selectedNode];
+    CBNode* theNode = [self selectedNode];
     if (!theNode) {
         return;
     }
+
     NSDocumentController *docController = [NSDocumentController sharedDocumentController];
-    CBDocument *newDoc = [docController openUntitledDocumentOfType:@"DocumentType" display:YES];
-    [newDoc showNodeForDoubleClickOpen:theNode];
+
+    NSError* error = nil;
+    CBDocument* newDoc = [docController openUntitledDocumentAndDisplay:YES error:&error];
+    if (newDoc) {
+        [newDoc showNodeForDoubleClickOpen:theNode];
+    } else {
+        NSLog(@"Error (browserDoubleClicked:) => %@", error);
+    }
 }
                             
 
@@ -598,7 +612,8 @@ static NSString *sCBToolbarItemIdentifierLoading    = @"CBToolbarItemIdentifierL
     if (mLastSelectedNodeInFrameworkList) {
         NSInteger prevSelectedRow = [oFrameworkListView rowForItem:mLastSelectedNodeInFrameworkList];
         if (prevSelectedRow >= 0) {
-            [oFrameworkListView selectRow:prevSelectedRow byExtendingSelection:NO];
+            [oFrameworkListView selectRowIndexes:[NSIndexSet indexSetWithIndex:prevSelectedRow] byExtendingSelection:NO];
+            //[oFrameworkListView selectRow:prevSelectedRow byExtendingSelection:NO];
         }
         mLastSelectedNodeInFrameworkList = nil;
     }
@@ -664,7 +679,8 @@ static NSString *sCBToolbarItemIdentifierLoading    = @"CBToolbarItemIdentifierL
         CBNode *platformNode = [self _platformNodeForName:aNaviInfo.targetName];
         int platformNodeRow = [oFrameworkListView rowForItem:platformNode];
         if (platformNodeRow >= 0) {
-            [oFrameworkListView selectRow:platformNodeRow byExtendingSelection:NO];
+            [oFrameworkListView selectRowIndexes:[NSIndexSet indexSetWithIndex:platformNodeRow] byExtendingSelection:NO];
+            //[oFrameworkListView selectRow:platformNodeRow byExtendingSelection:NO];
             [oFrameworkListView expandItem:platformNode];
             mCurrentPlatformNode = platformNode;
             if (!platformNode.isLoaded) {
@@ -681,7 +697,8 @@ static NSString *sCBToolbarItemIdentifierLoading    = @"CBToolbarItemIdentifierL
         // フレームワーク・フォルダは常にロード済み
         int frameworkFolderNodeRow = [oFrameworkListView rowForItem:frameworkFolderNode];
         if (frameworkFolderNodeRow >= 0) {
-            [oFrameworkListView selectRow:frameworkFolderNodeRow byExtendingSelection:NO];
+            [oFrameworkListView selectRowIndexes:[NSIndexSet indexSetWithIndex:frameworkFolderNodeRow] byExtendingSelection:NO];
+            //[oFrameworkListView selectRow:frameworkFolderNodeRow byExtendingSelection:NO];
             [oFrameworkListView expandItem:frameworkFolderNode];
             mCurrentFrameworkFolderNode = frameworkFolderNode;
         } else {
@@ -693,7 +710,8 @@ static NSString *sCBToolbarItemIdentifierLoading    = @"CBToolbarItemIdentifierL
         CBNode *frameworkNode = [mCurrentFrameworkFolderNode childNodeWithTitle:aNaviInfo.targetName];
         int frameworkNodeRow = [oFrameworkListView rowForItem:frameworkNode];
         if (frameworkNodeRow >= 0) {
-            [oFrameworkListView selectRow:frameworkNodeRow byExtendingSelection:NO];
+            [oFrameworkListView selectRowIndexes:[NSIndexSet indexSetWithIndex:frameworkNodeRow] byExtendingSelection:NO];
+            //[oFrameworkListView selectRow:frameworkNodeRow byExtendingSelection:NO];
             [oFrameworkListView expandItem:frameworkNode];
             mCurrentFrameworkNode = frameworkNode;
             if (!frameworkNode.isLoaded) {
@@ -709,7 +727,8 @@ static NSString *sCBToolbarItemIdentifierLoading    = @"CBToolbarItemIdentifierL
         CBNode *referencesNode = [mCurrentFrameworkNode childNodeWithTitle:aNaviInfo.targetName];
         int referencesNodeRow = [oFrameworkListView rowForItem:referencesNode];
         if (referencesNodeRow >= 0) {
-            [oFrameworkListView selectRow:referencesNodeRow byExtendingSelection:NO];
+            [oFrameworkListView selectRowIndexes:[NSIndexSet indexSetWithIndex:referencesNodeRow] byExtendingSelection:NO];
+            //[oFrameworkListView selectRow:referencesNodeRow byExtendingSelection:NO];
             [oFrameworkListView expandItem:referencesNode];
             mCurrentReferencesNode = referencesNode;
             [oBrowser reloadColumn:0];
@@ -985,7 +1004,8 @@ static NSString *sCBToolbarItemIdentifierLoading    = @"CBToolbarItemIdentifierL
         if ([nodesToBeShown count] == 0) {
             int row = [oFrameworkListView rowForItem:aNode];
             if (row >= 0) {
-                [oFrameworkListView selectRow:row byExtendingSelection:NO];
+                [oFrameworkListView selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
+                //[oFrameworkListView selectRow:row byExtendingSelection:NO];
             }
             if (aNode.type >= CBNodeTypeReferences) {
                 mCurrentReferencesNode = aNode;
@@ -1060,7 +1080,8 @@ static NSString *sCBToolbarItemIdentifierLoading    = @"CBToolbarItemIdentifierL
     for (CBNode *aNode in [nodesToOpen reverseObjectEnumerator]) {
         int row = [oFrameworkListView rowForItem:aNode];
         if (row >= 0) {
-            [oFrameworkListView selectRow:row byExtendingSelection:NO];
+            [oFrameworkListView selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
+            //[oFrameworkListView selectRow:row byExtendingSelection:NO];
             [oFrameworkListView expandItem:aNode];
         } else {
             int row = [aNode.parentNode indexOfChildNode:aNode];
@@ -1555,9 +1576,14 @@ void _CBSetupToolbarView(NSToolbarItem *item, NSView *view)
     NSArray *stack = [requestedURL makeNavigationInfos];
     if (stack) {
         if (modifiers & NSCommandKeyMask) {
-            NSDocumentController *docController = [NSDocumentController sharedDocumentController];
-            CBDocument *newDoc = [docController openUntitledDocumentOfType:@"DocumentType" display:YES];
-            [newDoc resolveStackForNewWindowOpen:stack];
+            NSDocumentController* docController = [NSDocumentController sharedDocumentController];
+            NSError* error = nil;
+            CBDocument* newDoc = [docController openUntitledDocumentAndDisplay:YES error:&error];
+            if (newDoc) {
+                [newDoc resolveStackForNewWindowOpen:stack];
+            } else {
+                NSLog(@"Error (webView:decidePolicyForNavigationAction:request:frame:decisionListener:) => %@", error);
+            }
         } else {
             /*NSLog(@"====");
             for (CBNavigationInfo *info in stack) {

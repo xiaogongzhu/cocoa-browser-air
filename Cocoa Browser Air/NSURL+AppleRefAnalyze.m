@@ -51,15 +51,19 @@ static NSMutableArray   *sCBIPhoneDocumentLocalHeadersForPlatformCheck = nil;
     [sCBIPhoneDocumentLocalHeaders addObject:@"file:///Library/Developer/Shared/Documentation/DocSets/com.apple.adc.documentation.AppleiPhone3_0.iPhoneLibrary.docset/Contents/Resources/Documents/documentation"];
     [sCBIPhoneDocumentLocalHeaders addObject:@"file:///Library/Developer/Shared/Documentation/DocSets/com.apple.adc.documentation.AppleiPhone3_1.iPhoneLibrary.docset/Contents/Resources/Documents/documentation"];
     [sCBIPhoneDocumentLocalHeaders addObject:@"file:///Library/Developer/Shared/Documentation/DocSets/com.apple.adc.documentation.AppleiPhone3_2.iPhoneLibrary.docset/Contents/Resources/Documents/documentation"];
+    [sCBIPhoneDocumentLocalHeaders addObject:@"file:///Library/Developer/Documentation/DocSets/com.apple.adc.documentation.AppleiPhone3_2.iPhoneLibrary.docset/Contents/Resources/Documents/documentation"];
+    [sCBIPhoneDocumentLocalHeaders addObject:@"file:///Library/Developer/Documentation/DocSets/com.apple.adc.documentation.AppleiPhone4_0.iPhoneLibrary.docset/Contents/Resources/Documents/documentation"];
     [sCBIPhoneDocumentLocalHeaders addObject:@"file:///Developer/Platforms/iPhoneOS.platform/Developer/Documentation/DocSets/com.apple.adc.documentation.AppleiPhone2_0.iPhoneLibrary.docset/Contents/Resources/Documents/documentation"];
     [sCBIPhoneDocumentLocalHeaders addObject:@"file:///Developer/Platforms/iPhoneOS.platform/Developer/Documentation/DocSets/com.apple.adc.documentation.AppleiPhone2_1.iPhoneLibrary.docset/Contents/Resources/Documents/documentation"];
     [sCBIPhoneDocumentLocalHeaders addObject:@"file:///Developer/Platforms/iPhoneOS.platform/Developer/Documentation/DocSets/com.apple.adc.documentation.AppleiPhone2_2.iPhoneLibrary.docset/Contents/Resources/Documents/documentation"];
     [sCBIPhoneDocumentLocalHeaders addObject:@"file:///Developer/Platforms/iPhoneOS.platform/Developer/Documentation/DocSets/com.apple.adc.documentation.AppleiPhone3_0.iPhoneLibrary.docset/Contents/Resources/Documents/documentation"];
     [sCBIPhoneDocumentLocalHeaders addObject:@"file:///Developer/Platforms/iPhoneOS.platform/Developer/Documentation/DocSets/com.apple.adc.documentation.AppleiPhone3_1.iPhoneLibrary.docset/Contents/Resources/Documents/documentation"];
     [sCBIPhoneDocumentLocalHeaders addObject:@"file:///Developer/Platforms/iPhoneOS.platform/Developer/Documentation/DocSets/com.apple.adc.documentation.AppleiPhone3_2.iPhoneLibrary.docset/Contents/Resources/Documents/documentation"];
+    [sCBIPhoneDocumentLocalHeaders addObject:@"file:///Developer/Platforms/iPhoneOS.platform/Developer/Documentation/DocSets/com.apple.adc.documentation.AppleiPhone4_0.iPhoneLibrary.docset/Contents/Resources/Documents/documentation"];
     
     sCBIPhoneDocumentLocalHeadersForPlatformCheck = [[NSMutableArray alloc] init];
     [sCBIPhoneDocumentLocalHeadersForPlatformCheck addObject:@"file:///Library/Developer/Shared/Documentation/DocSets/com.apple.adc.documentation.AppleiPhone"];
+    [sCBIPhoneDocumentLocalHeadersForPlatformCheck addObject:@"file:///Library/Developer/Documentation/DocSets/com.apple.adc.documentation.AppleiPhone"];
     [sCBIPhoneDocumentLocalHeadersForPlatformCheck addObject:@"file:///Developer/Platforms/iPhoneOS.platform"];    
 }
 

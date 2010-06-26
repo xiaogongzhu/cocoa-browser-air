@@ -800,7 +800,7 @@
 					libxml,
 				);
 				PREBINDING = NO;
-				SDKROOT = macosx10.5;
+				SDKROOT = macosx10.6;
 			};
 			name = Debug;
 		};
@@ -816,7 +816,7 @@
 				IBC_NOTICES = NO;
 				IBC_WARNINGS = NO;
 				PREBINDING = NO;
-				SDKROOT = macosx10.5;
+				SDKROOT = macosx10.6;
 			};
 			name = Release;
 		};

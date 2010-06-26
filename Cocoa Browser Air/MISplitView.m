@@ -34,15 +34,15 @@
     [super dealloc];
 }
 
-- (CGFloat)dividerThickness
+/*- (CGFloat)dividerThickness
 {
     if ([self isVertical]) {
         return 7.0f;
     }
     return 7.0f;
-}
+}*/
 
-- (void)drawDividerInRect:(NSRect)rect
+/*- (void)drawDividerInRect:(NSRect)rect
 {
     NSSize backImageSize = [mDividerBackImage size];
     NSSize dipImageSize = [mDividerDipImage size];
@@ -59,7 +59,7 @@
                             operation:NSCompositeSourceOver
                              fraction:1.0f];
     }
-}
+}*/
 
 - (void)resizeSubviewsWithOldSize:(NSSize)oldBoundsSize
 {

@@ -8,11 +8,11 @@
     return 1.0f;
 }
 
-- (void)drawDividerInRect:(NSRect)rect
+/*- (void)drawDividerInRect:(NSRect)rect
 {
     [[NSColor colorWithCalibratedWhite:0.5 alpha:1.0] set];
     NSRectFill(rect);
-}
+}*/
 
 - (void)resizeSubviewsWithOldSize:(NSSize)oldBoundsSize
 {
