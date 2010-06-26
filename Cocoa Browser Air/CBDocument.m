@@ -152,6 +152,7 @@ static NSString *sCBToolbarItemIdentifierLoading    = @"CBToolbarItemIdentifierL
     
     // Full text search is not supported
     [oFullSearchField setEnabled:NO];
+    [oFullSearchField setHidden:YES];
     
     if ([[CBAppController sharedAppController] hidesSearchBarAutomatically]) {
         [self hideSearchBar:0.14];
