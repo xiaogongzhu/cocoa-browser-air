@@ -81,7 +81,7 @@
         }
     }
     
-    if ([mParentNode.title hasPrefix:@"iPhone"]) {
+    if ([mParentNode.title hasPrefix:@"iPhone"] || [mParentNode.title hasPrefix:@"iOS"]) {
         [mParentNode sortIPhoneFrameworkNamesAndSetImages:YES];
     } else {
         [mParentNode sortMacFrameworkNamesAndSetImages];

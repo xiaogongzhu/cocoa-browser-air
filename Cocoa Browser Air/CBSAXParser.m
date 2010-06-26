@@ -32,9 +32,11 @@
 
     if ([aNode.title isEqualToString:@"Mac OS X 10.5"]) {
         parserClass = [CBSAXMac_10_5_PlatformParser class];
-    } else if ([aNode.title isEqualToString:@"Mac OS X 10.6"] || [aNode.title isEqualToString:@"iPhone 3.1"] || [aNode.title isEqualToString:@"iPhone 3.2"]) {
+    } else if ([aNode.title isEqualToString:@"Mac OS X 10.6"] || [aNode.title isEqualToString:@"iPhone 3.1"] ||
+               [aNode.title isEqualToString:@"iPhone 3.2"] || [aNode.title isEqualToString:@"iOS 4.0"])
+    {
         parserClass = [CBSAXMac_10_6_PlatformParser class];
-    } else if ([aNode.title hasPrefix:@"iPhone"]) {
+    } else if ([aNode.title hasPrefix:@"iPhone"] || [aNode.title hasPrefix:@"iOS"]) {
         parserClass = [CBSAXIPhonePlatformParser class];
     }
     
@@ -58,7 +60,7 @@
         } else {
             parserClass = [CBSAXMac_10_5_FrameworkParser class];
         }
-    } else if ([platformName hasPrefix:@"iPhone"]) {
+    } else if ([platformName hasPrefix:@"iPhone"] || [platformName hasPrefix:@"iOS"]) {
         parserClass = [CBSAXMac_10_5_FrameworkParser class];
     }    
 

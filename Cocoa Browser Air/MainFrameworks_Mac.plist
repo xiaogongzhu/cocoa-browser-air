@@ -5,10 +5,10 @@
 	<string>Foundation</string>
 	<string>Application Kit</string>
 	<string>Core Animation</string>
+	<string>Quartz Core</string>
 	<string>Core Data</string>
 	<string>Core Image</string>
 	<string>Image Kit</string>
-	<string>Quartz Core</string>
 	<string>Quartz</string>
 	<string>QuickTime Kit</string>
 	<string>QTKit</string>

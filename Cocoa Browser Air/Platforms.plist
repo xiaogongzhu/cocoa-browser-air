@@ -81,6 +81,20 @@
 		<string>file:///Developer/Platforms/iPhoneOS.platform/Developer/Documentation/DocSets/com.apple.adc.documentation.AppleiPhone3_2.iPhoneLibrary.docset</string>
 		<key>Alt URL 1</key>
 		<string>file:///Library/Developer/Shared/Documentation/DocSets/com.apple.adc.documentation.AppleiPhone3_2.iPhoneLibrary.docset</string>
+		<key>Alt URL 2</key>
+		<string>file:///Library/Developer/Documentation/DocSets/com.apple.adc.documentation.AppleiPhone3_2.iPhoneLibrary.docset</string>
+	</dict>
+	<dict>
+		<key>Name</key>
+		<string>iOS 4.0</string>
+		<key>Icon File Path</key>
+		<string>/Developer/Platforms/iPhoneOS.platform/iPhoneOS.icns</string>
+		<key>URL</key>
+		<string>file:///Developer/Platforms/iPhoneOS.platform/Developer/Documentation/DocSets/com.apple.adc.documentation.AppleiPhone4_0.iPhoneLibrary.docset</string>
+		<key>Alt URL 1</key>
+		<string>file:///Library/Developer/Shared/Documentation/DocSets/com.apple.adc.documentation.AppleiPhone4_0.iPhoneLibrary.docset</string>
+		<key>Alt URL 2</key>
+		<string>file:///Library/Developer/Documentation/DocSets/com.apple.adc.documentation.AppleiPhone4_0.iPhoneLibrary.docset</string>
 	</dict>
 </array>
 </plist>

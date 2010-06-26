@@ -6,6 +6,7 @@
 	<string>UIKit</string>
 	<string>AV Foundation</string>
 	<string>Core Animation</string>
+	<string>Quartz Core</string>
 	<string>Core Data</string>
 	<string>Core Foundation</string>
 	<string>Core Graphics</string>

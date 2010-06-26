@@ -133,7 +133,7 @@
 - (NSString *)frameworkFolderNameForFramework:(NSString *)frameworkName platformName:(NSString *)platformName
 {
     NSArray *mainFrameworkNames = nil;
-    if ([platformName hasPrefix:@"iPhone"]) {
+    if ([platformName hasPrefix:@"iPhone"] || [platformName hasPrefix:@"iOS"]) {
         NSString *mainFrameworksInfosPath = [[NSBundle mainBundle] pathForResource:@"MainFrameworks_iPhone" ofType:@"plist"];
         mainFrameworkNames = [NSArray arrayWithContentsOfFile:mainFrameworksInfosPath];
     } else {

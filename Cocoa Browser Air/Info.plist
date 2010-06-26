@@ -30,7 +30,7 @@
 	<key>CFBundleIconFile</key>
 	<string>cocoa_browser_icon</string>
 	<key>CFBundleIdentifier</key>
-	<string>jp.designed.numata.CocoaBrowserAir2</string>
+	<string>jp.sazameki.CocoaBrowserAir</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -40,7 +40,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>2.5</string>
+	<string>4.0</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>

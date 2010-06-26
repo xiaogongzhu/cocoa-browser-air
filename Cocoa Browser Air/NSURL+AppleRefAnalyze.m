@@ -442,7 +442,7 @@ static NSMutableArray   *sCBIPhoneDocumentLocalHeadersForPlatformCheck = nil;
 {
     if ([platformName isEqualToString:@"Mac OS X"]) {
         return [self checkFrameworkNameForMacOSX];
-    } else if ([platformName isEqualToString:@"iPhone"]) {
+    } else if ([platformName isEqualToString:@"iPhone"] || [platformName isEqualToString:@"iOS"]) {
         return [self checkFrameworkNameForIPhone];
     }
     return nil;
