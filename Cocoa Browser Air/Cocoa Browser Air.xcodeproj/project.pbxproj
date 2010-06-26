@@ -141,7 +141,6 @@
 		8E698F8B0DCE418200ADFC92 /* NSURL+AppleRefAnalyze.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+AppleRefAnalyze.m"; sourceTree = "<group>"; };
 		8E698F900DCE41B600ADFC92 /* NSString+Tokenizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Tokenizer.h"; sourceTree = "<group>"; };
 		8E698F910DCE41B600ADFC92 /* NSString+Tokenizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Tokenizer.m"; sourceTree = "<group>"; };
-		8E6990330DCE46DF00ADFC92 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Japanese; path = Japanese.lproj/Credits.rtf; sourceTree = "<group>"; };
 		8E73E951105BDD000022A61A /* libxml.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = libxml.framework; sourceTree = "<group>"; };
 		8E7676A5105108F0009CCA7D /* CBSAXMac_10_6_PlatformParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBSAXMac_10_6_PlatformParser.h; sourceTree = "<group>"; };
 		8E7676A6105108F0009CCA7D /* CBSAXMac_10_6_PlatformParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBSAXMac_10_6_PlatformParser.m; sourceTree = "<group>"; };
@@ -705,7 +704,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				2A37F4BAFDCFA73011CA2CEA /* English */,
-				8E6990330DCE46DF00ADFC92 /* Japanese */,
 			);
 			name = Credits.rtf;
 			sourceTree = "<group>";
