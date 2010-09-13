@@ -41,7 +41,11 @@
     NSString *theURLStr = [mParentNode.URL absoluteString];
     NSString *documentPath = [info objectForKey:@"url"];
     
-    NSString *documentURL = [[theURLStr stringByAppendingPathComponent:@"Contents/Resources/Documents"] stringByAppendingPathComponent:documentPath];
+    NSString *documentURL = nil;
+    if ([documentPath hasPrefix:@"../../"]) {
+        documentPath = [documentPath substringFromIndex:6];
+    }
+    documentURL = [[theURLStr stringByAppendingPathComponent:@"Contents/Resources/Documents/"] stringByAppendingPathComponent:documentPath];
 
     // Create a framework node
     CBNode *frameworkNode = [[CBNode new] autorelease];
@@ -50,6 +54,10 @@
     frameworkNode.type = CBNodeTypeFramework;
     frameworkNode.URL = [NSURL URLWithString:documentURL];
 
+#ifdef __DEBUG__
+    NSLog(@"CBSAXMac_10_6_PlatformParser>> _addFrame:\"%@\" URLStr:\"%@\"", title, documentURL);
+#endif
+    
     [mParentNode addChildNode:frameworkNode];    
 }
 
