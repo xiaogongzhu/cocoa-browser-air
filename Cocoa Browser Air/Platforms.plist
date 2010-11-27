@@ -120,5 +120,17 @@
 		<key>Alt URL 2</key>
 		<string>file:///Library/Developer/Documentation/DocSets/com.apple.adc.documentation.AppleiOS4_1.iOSLibrary.docset</string>
 	</dict>
+	<dict>
+		<key>Name</key>
+		<string>iOS 4.2</string>
+		<key>Icon File Path</key>
+		<string>/Developer/Platforms/iPhoneOS.platform/iPhoneOS.icns</string>
+		<key>URL</key>
+		<string>file:///Developer/Platforms/iPhoneOS.platform/Developer/Documentation/DocSets/com.apple.adc.documentation.AppleiOS4_2.iOSLibrary.docset</string>
+		<key>Alt URL 1</key>
+		<string>file:///Library/Developer/Shared/Documentation/DocSets/com.apple.adc.documentation.AppleiOS4_2.iOSLibrary.docset</string>
+		<key>Alt URL 2</key>
+		<string>file:///Library/Developer/Documentation/DocSets/com.apple.adc.documentation.AppleiOS4_2.iOSLibrary.docset</string>
+	</dict>
 </array>
 </plist>
